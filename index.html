@@ -59,8 +59,26 @@
           <span id="typed-text"></span><span class="typed-cursor">|</span>
         </div>
         <p class="hero-description">
-          Based in Japan. Focused on AI infrastructure, RAG systems, CI/CD automation, observability, and robust multi-cloud platform operations.
+          Based in Japan. I build, observe, and continuously improve AI applications and cloud platforms across RAG systems, CI/CD automation, observability, and secure hybrid infrastructure.
         </p>
+        <div class="impact-strip" aria-label="Career impact highlights">
+          <div class="impact-item">
+            <strong>4+ yrs</strong>
+            <span>system development & operations</span>
+          </div>
+          <div class="impact-item">
+            <strong>10k+ PDFs</strong>
+            <span>RAG document pipeline</span>
+          </div>
+          <div class="impact-item">
+            <strong>+22pt</strong>
+            <span>search success improvement</span>
+          </div>
+          <div class="impact-item">
+            <strong>60%</strong>
+            <span>deployment time reduction</span>
+          </div>
+        </div>
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">
             View Projects <i class="ri-arrow-right-line"></i>
@@ -94,7 +112,7 @@
             <i class="ri-brain-line"></i>
           </div>
           <h3>AI & RAG Infrastructure</h3>
-          <p>Designing scalable infrastructure for LLM and RAG applications. Experienced in cloud LLM endpoints (Bedrock, Vertex AI), proxy deployment (Cloudflare Workers), and vector databases integration.</p>
+          <p>Designing RAG workflows with AWS Bedrock, Dify, OpenSearch, Python, and LangFuse. Built a 10,000+ PDF ingestion and vectorization pipeline, then improved retrieval quality through tracing-driven tuning.</p>
         </div>
         <!-- Card 2 -->
         <div class="glass-card focus-card" style="--accent-gradient: linear-gradient(90deg, var(--color-cyan), var(--color-green));">
@@ -102,7 +120,7 @@
             <i class="ri-git-branch-line"></i>
           </div>
           <h3>CI/CD & DevSecOps</h3>
-          <p>Architecting secure, automated deployment pipelines. Implementing vulnerability scanning, container image signing (Cosign), SBOM generation, and canary releases (Progressive Delivery).</p>
+          <p>Architecting secure automated delivery with GitHub Actions, Docker, GHCR, Trivy, Cosign, and rollback-aware release flows. Reduced deployment time from 18 minutes to 7 minutes through parallelization and caching.</p>
         </div>
         <!-- Card 3 -->
         <div class="glass-card focus-card" style="--accent-gradient: linear-gradient(90deg, var(--color-green), var(--color-purple));">
@@ -110,7 +128,7 @@
             <i class="ri-pulse-line"></i>
           </div>
           <h3>Observability</h3>
-          <p>Establishing comprehensive system observability dashboards. Specialize in configuring Datadog APM/metrics and LangFuse tracing to monitor both traditional systems and LLM application performance.</p>
+          <p>Implementing Datadog metrics, logs, APM, monitors, and LLM observability. Experienced with GKE production monitoring, LangFuse tracing, and alert rules managed through repeatable infrastructure workflows.</p>
         </div>
       </div>
     </div>
@@ -120,131 +138,84 @@
   <section id="tech-stack" class="reveal">
     <div class="container">
       <h2 class="section-title">Tech Stack</h2>
-      <p class="section-desc">Tools, platforms, and languages I use to construct reliable architectures.</p>
-      
-      <div class="stack-tabs">
-        <button class="tab-btn active" data-filter="all">All Tech</button>
-        <button class="tab-btn" data-filter="cloud">Cloud / Platform</button>
-        <button class="tab-btn" data-filter="devops">DevOps & GitOps</button>
-        <button class="tab-btn" data-filter="obs">Observability</button>
-        <button class="tab-btn" data-filter="backend">Backend & Languages</button>
-        <button class="tab-btn" data-filter="ai">AI / LLM</button>
-      </div>
+      <p class="section-desc">A practical map of how I combine cloud, automation, AI, and observability tools into maintainable systems.</p>
 
-      <div class="stack-grid" id="stack-grid">
-        <!-- Cloud Cards -->
-        <div class="glass-card stack-card" data-category="cloud" style="--accent-color: var(--color-cyan);">
-          <i class="ri-cloud-line"></i>
-          <span>AWS</span>
-          <span class="category-tag">Cloud</span>
-        </div>
-        <div class="glass-card stack-card" data-category="cloud" style="--accent-color: var(--color-cyan);">
-          <i class="ri-microsoft-line"></i>
-          <span>Azure</span>
-          <span class="category-tag">Cloud</span>
-        </div>
-        <div class="glass-card stack-card" data-category="cloud" style="--accent-color: var(--color-cyan);">
-          <i class="ri-google-line"></i>
-          <span>GCP</span>
-          <span class="category-tag">Cloud</span>
-        </div>
-        <div class="glass-card stack-card" data-category="cloud" style="--accent-color: var(--color-cyan);">
-          <i class="ri-shield-flash-line"></i>
-          <span>Cloudflare</span>
-          <span class="category-tag">Edge / CDN</span>
-        </div>
-        <div class="glass-card stack-card" data-category="cloud" style="--accent-color: var(--color-cyan);">
-          <i class="ri-pages-line"></i>
-          <span>Vercel</span>
-          <span class="category-tag">Platform</span>
+      <div class="stack-overview">
+        <div class="glass-card stack-lane" style="--lane-color: var(--color-cyan);">
+          <div class="stack-lane-header">
+            <i class="ri-cloud-line"></i>
+            <div>
+              <h3>Cloud & Edge Platform</h3>
+              <p>Deploying public services and private lab workloads across cloud and edge networks.</p>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <span>AWS</span>
+            <span>Azure</span>
+            <span>GCP</span>
+            <span>Cloudflare</span>
+            <span>Vercel</span>
+            <span>Synology NAS</span>
+          </div>
+          <div class="stack-proof">Used for GitHub Pages services, Cloudflare Workers routing, VPS hosting, and home-lab connectivity.</div>
         </div>
 
-        <!-- DevOps Cards -->
-        <div class="glass-card stack-card" data-category="devops" style="--accent-color: var(--color-orange);">
-          <i class="ri-github-fill"></i>
-          <span>GitHub Actions</span>
-          <span class="category-tag">CI/CD</span>
-        </div>
-        <div class="glass-card stack-card" data-category="devops" style="--accent-color: var(--color-orange);">
-          <i class="ri-instance-line"></i>
-          <span>Docker</span>
-          <span class="category-tag">Container</span>
-        </div>
-        <div class="glass-card stack-card" data-category="devops" style="--accent-color: var(--color-orange);">
-          <i class="ri-server-line"></i>
-          <span>Terraform</span>
-          <span class="category-tag">IaC</span>
-        </div>
-        <div class="glass-card stack-card" data-category="devops" style="--accent-color: var(--color-orange);">
-          <i class="ri-anchor-line"></i>
-          <span>Helm</span>
-          <span class="category-tag">Kubernetes</span>
-        </div>
-        <div class="glass-card stack-card" data-category="devops" style="--accent-color: var(--color-orange);">
-          <i class="ri-database-line"></i>
-          <span>GHCR</span>
-          <span class="category-tag">Registry</span>
+        <div class="glass-card stack-lane" style="--lane-color: var(--color-orange);">
+          <div class="stack-lane-header">
+            <i class="ri-git-branch-line"></i>
+            <div>
+              <h3>Delivery & Security</h3>
+              <p>Building repeatable delivery pipelines with container security and controlled service exposure.</p>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <span>GitHub Actions</span>
+            <span>Docker</span>
+            <span>GHCR</span>
+            <span>Terraform</span>
+            <span>Helm</span>
+            <span>Cosign</span>
+          </div>
+          <div class="stack-proof">Used for CI/CD, signed container images, SBOM generation, canary releases, and Zero Trust access boundaries.</div>
         </div>
 
-        <!-- Observability Cards -->
-        <div class="glass-card stack-card" data-category="obs" style="--accent-color: var(--color-green);">
-          <i class="ri-heart-pulse-line"></i>
-          <span>Datadog</span>
-          <span class="category-tag">Monitoring</span>
-        </div>
-        <div class="glass-card stack-card" data-category="obs" style="--accent-color: var(--color-green);">
-          <i class="ri-eye-line"></i>
-          <span>LangFuse</span>
-          <span class="category-tag">LLM Tracing</span>
-        </div>
-
-        <!-- Backend Cards -->
-        <div class="glass-card stack-card" data-category="backend" style="--accent-color: var(--color-purple);">
-          <i class="ri-code-s-slash-line"></i>
-          <span>Python</span>
-          <span class="category-tag">Language</span>
-        </div>
-        <div class="glass-card stack-card" data-category="backend" style="--accent-color: var(--color-purple);">
-          <i class="ri-code-line"></i>
-          <span>FastAPI</span>
-          <span class="category-tag">Framework</span>
-        </div>
-        <div class="glass-card stack-card" data-category="backend" style="--accent-color: var(--color-purple);">
-          <i class="ri-javascript-line"></i>
-          <span>TypeScript</span>
-          <span class="category-tag">Language</span>
-        </div>
-        <div class="glass-card stack-card" data-category="backend" style="--accent-color: var(--color-purple);">
-          <i class="ri-terminal-line"></i>
-          <span>Shell Script</span>
-          <span class="category-tag">Automation</span>
+        <div class="glass-card stack-lane" style="--lane-color: var(--color-purple);">
+          <div class="stack-lane-header">
+            <i class="ri-brain-line"></i>
+            <div>
+              <h3>AI Application Infrastructure</h3>
+              <p>Connecting LLM APIs, RAG backends, and personal AI tools into usable application workflows.</p>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <span>FastAPI</span>
+            <span>Python</span>
+            <span>TypeScript</span>
+            <span>OpenAI API</span>
+            <span>Vertex AI</span>
+            <span>Bedrock</span>
+            <span>LobeChat</span>
+          </div>
+          <div class="stack-proof">Used for OpenAI-compatible proxying, RAG APIs, AI chat frontends, and model evaluation workflows.</div>
         </div>
 
-        <!-- AI Cards -->
-        <div class="glass-card stack-card" data-category="ai" style="--accent-color: var(--color-purple);">
-          <i class="ri-cpu-line"></i>
-          <span>AWS Bedrock</span>
-          <span class="category-tag">AI API</span>
-        </div>
-        <div class="glass-card stack-card" data-category="ai" style="--accent-color: var(--color-purple);">
-          <i class="ri-sparkling-2-line"></i>
-          <span>Vertex AI Gemini</span>
-          <span class="category-tag">AI API</span>
-        </div>
-        <div class="glass-card stack-card" data-category="ai" style="--accent-color: var(--color-purple);">
-          <i class="ri-links-line"></i>
-          <span>OpenAI API</span>
-          <span class="category-tag">AI API</span>
-        </div>
-        <div class="glass-card stack-card" data-category="ai" style="--accent-color: var(--color-purple);">
-          <i class="ri-node-tree"></i>
-          <span>Dify</span>
-          <span class="category-tag">AI Workflow</span>
-        </div>
-        <div class="glass-card stack-card" data-category="ai" style="--accent-color: var(--color-purple);">
-          <i class="ri-search-2-line"></i>
-          <span>OpenSearch</span>
-          <span class="category-tag">Vector DB</span>
+        <div class="glass-card stack-lane" style="--lane-color: var(--color-green);">
+          <div class="stack-lane-header">
+            <i class="ri-pulse-line"></i>
+            <div>
+              <h3>Operations & Observability</h3>
+              <p>Monitoring system health, automating daily workflows, and keeping services easy to operate.</p>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <span>Datadog</span>
+            <span>LangFuse</span>
+            <span>n8n</span>
+            <span>Shell Script</span>
+            <span>GitHub Pages</span>
+            <span>Synology Chat</span>
+          </div>
+          <div class="stack-proof">Used for APM/tracing, scheduled monitoring jobs, webhook automation, and service-status dashboards.</div>
         </div>
       </div>
     </div>
@@ -332,6 +303,42 @@
     <div class="container">
       <h2 class="section-title">Personal Infrastructure Lab</h2>
       <p class="section-desc">My self-hosted playground and multi-cloud environment where I continuously practice system reliability, security, and networking operations.</p>
+
+      <div class="service-showcase">
+        <div class="service-showcase-header">
+          <div>
+            <h3>Public Services I Operate</h3>
+            <p>Representative services from my personal infrastructure. Public demos are linked; admin and storage surfaces stay access-controlled.</p>
+          </div>
+          <span class="security-note"><i class="ri-lock-line"></i> Public demo first, private ops protected</span>
+        </div>
+        <div class="service-grid">
+          <a class="glass-card service-card" href="https://lobe.mingzhe.uk" target="_blank">
+            <div class="service-icon"><i class="ri-robot-2-line"></i></div>
+            <div>
+              <h4>AI ChatBot</h4>
+              <p>Personal LobeChat deployment for multi-model AI usage and prompt testing.</p>
+              <span>LobeChat / Vercel</span>
+            </div>
+          </a>
+          <a class="glass-card service-card" href="https://workhmz.github.io/tokyo-transit-monitor" target="_blank">
+            <div class="service-icon"><i class="ri-train-line"></i></div>
+            <div>
+              <h4>Tokyo Transit Monitor</h4>
+              <p>Automated public transit delay monitor published through GitHub Pages with scheduled data refresh.</p>
+              <span>Python / GitHub Pages</span>
+            </div>
+          </a>
+          <a class="glass-card service-card" href="https://diffchecker-eij.pages.dev/text-compare" target="_blank">
+            <div class="service-icon"><i class="ri-file-copy-2-line"></i></div>
+            <div>
+              <h4>Diff Check Tool</h4>
+              <p>Cloudflare Pages utility for quick text comparison and everyday review workflows.</p>
+              <span>Cloudflare Pages</span>
+            </div>
+          </a>
+        </div>
+      </div>
       
       <div class="lab-container">
         <div class="lab-info">

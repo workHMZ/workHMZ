@@ -115,41 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================================================
-  // 4. Tech Stack Filter
-  // ==========================================================================
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const stackCards = document.querySelectorAll('.stack-card');
-
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-
-      const filter = button.getAttribute('data-filter');
-
-      stackCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        
-        if (filter === 'all' || category === filter) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-          }, 50);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'scale(0.8)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
-        }
-      });
-    });
-  });
-
-
-  // ==========================================================================
-  // 5. Active Link Highlight on Scroll
+  // 4. Active Link Highlight on Scroll
   // ==========================================================================
   const sections = document.querySelectorAll('section, header');
   const navItems = document.querySelectorAll('.nav-links a');
@@ -174,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================================================
-  // 6. Scroll Reveal (Intersection Observer)
+  // 5. Scroll Reveal (Intersection Observer)
   // ==========================================================================
   const revealElements = document.querySelectorAll('.reveal');
   
@@ -196,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================================================
-  // 7. Active Status Probing Engine (Real-time HTTP Monitoring)
+  // 6. Active Status Probing Engine (Real-time HTTP Monitoring)
   // ==========================================================================
   const dashboardNodes = document.querySelectorAll('.dashboard-node');
   let realNodesLatencies = []; // Track real latency values to feed virtual nodes
