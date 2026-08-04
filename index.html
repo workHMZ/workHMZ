@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akira | DevOps & SRE Engineer Portfolio</title>
+  <meta name="description" content="Akira's portfolio - DevOps / SRE-oriented engineer focusing on AI infrastructure, RAG systems, CI/CD automation, observability, and cloud operations.">
+  
+  <!-- Remixicon for icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Ambient Blobs -->
+  <div class="glow-blob blob-1"></div>
+  <div class="glow-blob blob-2"></div>
+  <div class="glow-blob blob-3"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-container">
+      <a href="#home" class="nav-logo">
+        <i class="ri-terminal-box-line"></i> akira<span>.dev</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#focus">Focus</a></li>
+        <li><a href="#tech-stack">Tech Stack</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#lab">Lab</a></li>
+        <li><a href="#certs">Certifications</a></li>
+        <!-- Day/Night theme toggler -->
+        <li>
+          <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme" title="Toggle Theme">
+            <i class="ri-moon-line"></i>
+          </button>
+        </li>
+      </ul>
+      <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+        <i class="ri-menu-3-line"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-subtitle">
+          <span class="status-indicator"></span> System Ready • DevOps / SRE
+        </div>
+        <h1 class="hero-title">
+          Hi, I'm <span class="gradient-text">Akira</span>
+        </h1>
+        <div class="hero-headline">
+          <span id="typed-text"></span><span class="typed-cursor">|</span>
+        </div>
+        <p class="hero-description">
+          Based in Japan. I build, observe, and continuously improve AI applications and cloud platforms across RAG systems, CI/CD automation, observability, and secure hybrid infrastructure.
+        </p>
+        <div class="impact-strip" aria-label="Career impact highlights">
+          <div class="impact-item">
+            <strong>4+ yrs</strong>
+            <span>system development & operations</span>
+          </div>
+          <div class="impact-item">
+            <strong>10k+ PDFs</strong>
+            <span>RAG document pipeline</span>
+          </div>
+          <div class="impact-item">
+            <strong>+22pt</strong>
+            <span>search success improvement</span>
+          </div>
+          <div class="impact-item">
+            <strong>60%</strong>
+            <span>deployment time reduction</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">
+            View Projects <i class="ri-arrow-right-line"></i>
+          </a>
+          <a href="#lab" class="btn btn-secondary">
+            Explore Lab Console
+          </a>
+          <div class="social-links">
+            <a href="https://github.com/workHMZ" target="_blank" class="social-icon" title="GitHub" id="social-github">
+              <i class="ri-github-fill"></i>
+            </a>
+            <a href="https://me.mingzhe.uk" target="_blank" class="social-icon" title="Portfolio" id="social-portfolio">
+              <i class="ri-global-line"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Focus Areas Section -->
+  <section id="focus" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Focus Areas</h2>
+      <p class="section-desc">Key domains where I apply production-grade infrastructure, automation, and reliability engineering.</p>
+      
+      <div class="focus-grid">
+        <!-- Card 1 -->
+        <div class="glass-card focus-card" style="--accent-gradient: linear-gradient(90deg, var(--color-purple), var(--color-cyan));">
+          <div class="focus-icon">
+            <i class="ri-brain-line"></i>
+          </div>
+          <h3>AI & RAG Infrastructure</h3>
+          <p>Designing RAG workflows with AWS Bedrock, Dify, OpenSearch, Python, and LangFuse. Built a 10,000+ PDF ingestion and vectorization pipeline, then improved retrieval quality through tracing-driven tuning.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="glass-card focus-card" style="--accent-gradient: linear-gradient(90deg, var(--color-cyan), var(--color-green));">
+          <div class="focus-icon">
+            <i class="ri-git-branch-line"></i>
+          </div>
+          <h3>CI/CD & DevSecOps</h3>
+          <p>Architecting secure automated delivery with GitHub Actions, Docker, GHCR, Trivy, Cosign, and rollback-aware release flows. Reduced deployment time from 18 minutes to 7 minutes through parallelization and caching.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="glass-card focus-card" style="--accent-gradient: linear-gradient(90deg, var(--color-green), var(--color-purple));">
+          <div class="focus-icon">
+            <i class="ri-pulse-line"></i>
+          </div>
+          <h3>Observability</h3>
+          <p>Implementing Datadog metrics, logs, APM, monitors, and LLM observability. Experienced with GKE production monitoring, LangFuse tracing, and alert rules managed through repeatable infrastructure workflows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section id="tech-stack" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Tech Stack</h2>
+      <p class="section-desc">A practical map of how I combine cloud, automation, AI, and observability tools into maintainable systems.</p>
+
+      <div class="stack-overview">
+        <div class="glass-card stack-lane" style="--lane-color: var(--color-cyan);">
+          <div class="stack-lane-header">
+            <i class="ri-cloud-line"></i>
+            <div>
+              <h3>Cloud & Edge Platform</h3>
+              <p>Deploying public services and private lab workloads across cloud and edge networks.</p>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <span>AWS</span>
+            <span>Azure</span>
+            <span>GCP</span>
+            <span>Cloudflare</span>
+            <span>R2 / D1</span>
+            <span>Vercel</span>
+            <span>Synology NAS</span>
+          </div>
+          <div class="stack-proof">Used for GitHub Pages services, Cloudflare Workers routing, R2/D1-backed apps, VPS hosting, and home-lab connectivity.</div>
+        </div>
+
+        <div class="glass-card stack-lane" style="--lane-color: var(--color-orange);">
+          <div class="stack-lane-header">
+            <i class="ri-git-branch-line"></i>
+            <div>
+              <h3>Delivery & Security</h3>
+              <p>Building repeatable delivery pipelines with container security and controlled service exposure.</p>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <span>GitHub Actions</span>
+            <span>Docker</span>
+            <span>GHCR</span>
+            <span>Terraform</span>
+            <span>Helm</span>
+            <span>Cosign</span>
+          </div>
+          <div class="stack-proof">Used for CI/CD, signed container images, SBOM generation, canary releases, and Zero Trust access boundaries.</div>
+        </div>
+
+        <div class="glass-card stack-lane" style="--lane-color: var(--color-purple);">
+          <div class="stack-lane-header">
+            <i class="ri-brain-line"></i>
+            <div>
+              <h3>AI Application Infrastructure</h3>
+              <p>Connecting LLM APIs, RAG backends, and personal AI tools into usable application workflows.</p>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <span>FastAPI</span>
+            <span>Python</span>
+            <span>TypeScript</span>
+            <span>OpenAI API</span>
+            <span>Vertex AI</span>
+            <span>Bedrock</span>
+            <span>LobeChat</span>
+          </div>
+          <div class="stack-proof">Used for OpenAI-compatible proxying, RAG APIs, AI chat frontends, and model evaluation workflows.</div>
+        </div>
+
+        <div class="glass-card stack-lane" style="--lane-color: var(--color-green);">
+          <div class="stack-lane-header">
+            <i class="ri-pulse-line"></i>
+            <div>
+              <h3>Operations & Observability</h3>
+              <p>Monitoring system health, automating daily workflows, and keeping services easy to operate.</p>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <span>Datadog</span>
+            <span>LangFuse</span>
+            <span>n8n</span>
+            <span>Shell Script</span>
+            <span>GitHub Pages</span>
+            <span>Synology Chat</span>
+          </div>
+          <div class="stack-proof">Used for APM/tracing, scheduled monitoring jobs, webhook automation, and service-status dashboards.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section id="projects" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-desc">A selection of my personal open-source projects focusing on automation, AI, and reliability.</p>
+      
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="glass-card project-card">
+          <div class="project-header">
+            <div class="project-icon-wrapper">
+              <i class="ri-git-repository-private-line"></i>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/workHMZ/aca-ghcr-cicd-lab" target="_blank" class="project-link" title="Source Code">
+                <i class="ri-github-fill"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">aca-ghcr-cicd-lab</h3>
+          <p class="project-desc">Serverless RAG API backed by FastAPI and Azure AI Search. Deployed via a modern CI/CD pipeline using GitHub Actions, GHCR, Canary releases, image verification with Cosign, SBOM, and full Datadog APM tracing.</p>
+          <div class="project-tags">
+            <span class="project-tag">FastAPI</span>
+            <span class="project-tag">Azure AI Search</span>
+            <span class="project-tag">GitHub Actions</span>
+            <span class="project-tag">Cosign</span>
+            <span class="project-tag">Datadog</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="glass-card project-card">
+          <div class="project-header">
+            <div class="project-icon-wrapper">
+              <i class="ri-route-line"></i>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/workHMZ/vertex2openai-cf" target="_blank" class="project-link" title="Source Code">
+                <i class="ri-github-fill"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">vertex2openai-cf</h3>
+          <p class="project-desc">An OpenAI-compatible API proxy hosted on Cloudflare Workers translating calls to Google Vertex AI Gemini. Features SSE streaming support, multiple authentication mechanisms, key rotation, and AI function calling capability.</p>
+          <div class="project-tags">
+            <span class="project-tag">Cloudflare Workers</span>
+            <span class="project-tag">Gemini API</span>
+            <span class="project-tag">OpenAI Spec</span>
+            <span class="project-tag">Edge JS</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="glass-card project-card">
+          <div class="project-header">
+            <div class="project-icon-wrapper">
+              <i class="ri-upload-cloud-2-line"></i>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/workHMZ/r2filebox" target="_blank" class="project-link" title="Source Code">
+                <i class="ri-github-fill"></i>
+              </a>
+              <a href="https://box.mingzhe.uk/#/" target="_blank" class="project-link" title="Live Service">
+                <i class="ri-external-link-line"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">r2filebox</h3>
+          <p class="project-desc">A lightweight, Cloudflare-native file and text sharing app built with Workers, R2, D1, Vue 3, and TypeScript. Supports extraction codes, anonymous sharing, and resumable uploads as a serverless alternative to FileCodeBox.</p>
+          <div class="project-tags">
+            <span class="project-tag">Cloudflare Workers</span>
+            <span class="project-tag">R2</span>
+            <span class="project-tag">D1</span>
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">Vue 3</span>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="glass-card project-card">
+          <div class="project-header">
+            <div class="project-icon-wrapper">
+              <i class="ri-radar-line"></i>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/workHMZ/tokyo-transit-monitor" target="_blank" class="project-link" title="Source Code">
+                <i class="ri-github-fill"></i>
+              </a>
+              <a href="https://workhmz.github.io/tokyo-transit-monitor/" target="_blank" class="project-link" title="Live Service">
+                <i class="ri-external-link-line"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">tokyo-transit-monitor</h3>
+          <p class="project-desc">Tokyo train delay monitoring system written in Python. Automatically schedules and runs via GitHub Actions to fetch real-time public transit delays, publish updates to GitHub Pages, and send instant alerts to Synology Chat.</p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">GitHub Actions</span>
+            <span class="project-tag">GitHub Pages</span>
+            <span class="project-tag">Synology Chat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personal Infrastructure Lab Section -->
+  <section id="lab" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Personal Infrastructure Lab</h2>
+      <p class="section-desc">My self-hosted playground and multi-cloud environment where I continuously practice system reliability, security, and networking operations.</p>
+
+      <div class="service-showcase">
+        <div class="service-showcase-header">
+          <div>
+            <h3>Public Services I Operate</h3>
+            <p>Representative services from my personal infrastructure. Public demos are linked; admin and storage surfaces stay access-controlled.</p>
+          </div>
+          <span class="security-note"><i class="ri-lock-line"></i> Public demo first, private ops protected</span>
+        </div>
+        <div class="service-grid">
+          <a class="glass-card service-card" href="https://lobe.mingzhe.uk" target="_blank">
+            <div class="service-icon"><i class="ri-robot-2-line"></i></div>
+            <div>
+              <h4>AI ChatBot</h4>
+              <p>Personal LobeChat deployment for multi-model AI usage and prompt testing.</p>
+              <span>LobeChat / Vercel</span>
+            </div>
+          </a>
+          <a class="glass-card service-card" href="https://workhmz.github.io/tokyo-transit-monitor" target="_blank">
+            <div class="service-icon"><i class="ri-train-line"></i></div>
+            <div>
+              <h4>Tokyo Transit Monitor</h4>
+              <p>Automated public transit delay monitor published through GitHub Pages with scheduled data refresh.</p>
+              <span>Python / GitHub Pages</span>
+            </div>
+          </a>
+          <a class="glass-card service-card" href="https://box.mingzhe.uk/#/" target="_blank">
+            <div class="service-icon"><i class="ri-upload-cloud-2-line"></i></div>
+            <div>
+              <h4>R2 FileBox</h4>
+              <p>Cloudflare-native file and text sharing service backed by Workers, R2, and D1.</p>
+              <span>Workers / R2 / D1</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="lab-container">
+        <div class="lab-info">
+          <h3><i class="ri-dashboard-3-line gradient-text"></i> Live Lab Console</h3>
+          <p>
+            I operate a hybrid multi-cloud and self-hosted infrastructure environment spanning Cloudflare edge, public cloud environments (Azure & GCP), and dedicated home lab servers (Synology NAS). 
+          </p>
+          <p>
+            The dashboard console on the right actively polls my online endpoints to fetch live availability status and round-trip HTTP latency.
+          </p>
+          <ul class="lab-features">
+            <li>Zero Trust access controls restricting sensitive services.</li>
+            <li>Cloudflare Tunnels for secure exposure without open inbound ports.</li>
+            <li>Tailscale private overlay network linking NAS and VPS endpoints.</li>
+            <li>Domain email compliance config (SPF, DKIM, DMARC).</li>
+          </ul>
+        </div>
+
+        <div class="lab-dashboard">
+          <!-- Node 1: Cloudflare Edge (box.mingzhe.uk) -->
+          <div class="glass-card dashboard-node" data-endpoint="https://box.mingzhe.uk/#/">
+            <div class="node-header">
+              <div class="node-name">
+                <i class="ri-shield-flash-line"></i> edge-cloudflare
+              </div>
+              <div class="node-status probing">PROBING</div>
+            </div>
+            <div class="node-detail">Cloudflare Workers, R2, D1, DNS, CDN, and WAF rules for secure file sharing.</div>
+            <div class="node-metrics">
+              <span>WAF: Blocked 0</span>
+              <span class="latency-display">Latency: --</span>
+            </div>
+          </div>
+          
+          <!-- Node 2: VPS Mesh (me.mingzhe.uk) -->
+          <div class="glass-card dashboard-node" data-endpoint="https://me.mingzhe.uk">
+            <div class="node-header">
+              <div class="node-name">
+                <i class="ri-cpu-line"></i> cloud-vps-mesh
+              </div>
+              <div class="node-status probing">PROBING</div>
+            </div>
+            <div class="node-detail">Vercel deployments, Azure & GCP virtual networks.</div>
+            <div class="node-metrics">
+              <span>APM: LangFuse</span>
+              <span class="latency-display">Latency: --</span>
+            </div>
+          </div>
+
+          <!-- Node 3: Home Lab / Synology (mingzhe.uk/home) -->
+          <div class="glass-card dashboard-node" data-endpoint="https://mingzhe.uk/home">
+            <div class="node-header">
+              <div class="node-name">
+                <i class="ri-hard-drive-line"></i> local-synology-nas
+              </div>
+              <div class="node-status probing">PROBING</div>
+            </div>
+            <div class="node-detail">Private backups, Synology Chat notifications, home services hosting.</div>
+            <div class="node-metrics">
+              <span>RAID: Healthy</span>
+              <span class="latency-display">Latency: --</span>
+            </div>
+          </div>
+
+          <!-- Node 4: Tailscale overlay (virtual overlay) -->
+          <div class="glass-card dashboard-node" data-endpoint="virtual-overlay">
+            <div class="node-header">
+              <div class="node-name">
+                <i class="ri-share-line"></i> tailscale-overlay
+              </div>
+              <div class="node-status probing">PROBING</div>
+            </div>
+            <div class="node-detail">WireGuard-based Zero Trust overlay connecting cloud & home server.</div>
+            <div class="node-metrics">
+              <span>Nodes: 5</span>
+              <span class="latency-display">Latency: --</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certs" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Certifications</h2>
+      <p class="section-desc">Professional credentials validating my expertise in cloud architecture, operations, and AI foundation systems.</p>
+      
+      <div class="certs-grid">
+        <!-- Cert 1 -->
+        <div class="glass-card cert-card">
+          <div class="cert-icon">
+            <i class="ri-award-line"></i>
+          </div>
+          <div class="cert-info">
+            <h3>AWS Certified Solutions Architect</h3>
+            <p>Professional</p>
+          </div>
+        </div>
+        <!-- Cert 2 -->
+        <div class="glass-card cert-card">
+          <div class="cert-icon">
+            <i class="ri-award-line"></i>
+          </div>
+          <div class="cert-info">
+            <h3>OCI AI Foundations</h3>
+            <p>Associate | Oracle Cloud</p>
+          </div>
+        </div>
+        <!-- Cert 3 -->
+        <div class="glass-card cert-card">
+          <div class="cert-icon">
+            <i class="ri-award-line"></i>
+          </div>
+          <div class="cert-info">
+            <h3>OCI Foundations</h3>
+            <p>Associate | Oracle Cloud</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-logo">
+        <i class="ri-terminal-box-line"></i> akira<span>.dev</span>
+      </div>
+      <div class="footer-text">
+        &copy; 2026 Akira. Built with HTML / Vanilla CSS / JS.
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/workHMZ" target="_blank" class="social-icon" title="GitHub" id="footer-github">
+          <i class="ri-github-fill"></i>
+        </a>
+        <a href="https://me.mingzhe.uk" target="_blank" class="social-icon" title="Portfolio" id="footer-portfolio">
+          <i class="ri-global-line"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
