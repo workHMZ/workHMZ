@@ -768,80 +768,177 @@
   let telemetryStarted = false;
   let probeInterval = 0;
 
-  function updateHeroConsole(activeCount, averageLatency, probing, states) {
-    if (consoleNodeCount) consoleNodeCount.textContent = `${activeCount} / ${dashboardNodes.length || 3}`;
-    if (consoleRtt) consoleRtt.textContent = probing ? '…' : `${Math.max(0, Math.round(averageLatency))} ms`;
+  /*
+   * Probe honesty rules. A portfolio that fakes green is worse than one that says
+   * "I can't see this from here", so every node declares how it can be checked:
+   *
+   *   data-probe="health" - real cross-origin JSON health endpoint; status + payload checked
+   *   data-probe="http"   - real cross-origin GET; HTTP status code checked
+   *   data-probe="none"   - un-probeable by design (WAF challenge); never guessed at
+   *
+   * mode:'no-cors' is deliberately not used anywhere: an opaque response resolves for
+   * every status code, so it can only ever report "reachable", never "healthy".
+   */
+  const PROBE_TIMEOUT = 6000;
+  const FAIL_STREAK_BEFORE_UNREACHABLE = 2;
+  const STATUS_LABEL = {
+    active: 'ACTIVE',
+    shielded: 'SHIELDED',
+    degraded: 'DEGRADED',
+    unreachable: 'UNREACHABLE',
+    probing: 'PROBING'
+  };
+  /* shielded is a declared design state, not a fault - it counts as healthy. */
+  const HEALTHY = new Set(['active', 'shielded']);
+  const failStreaks = new Map();
+  const lastGoodReading = new Map();
+  const PROBE_INTERVAL = saveData ? 60000 : 20000;
+  /* Declared before updateHeroConsole, which reads it. */
+  let lastProbeAt = 0;
+
+  function probeMode(node) {
+    return node.dataset.probe || 'none';
+  }
+
+  const probeableNodes = dashboardNodes.filter(node => probeMode(node) !== 'none');
+
+  function updateHeroConsole(healthyCount, averageLatency, probing, states) {
+    const total = dashboardNodes.length;
+    if (consoleNodeCount) {
+      /* While re-sampling, keep the last known count rather than blinking back to placeholders. */
+      if (!probing) consoleNodeCount.textContent = `${healthyCount} / ${total}`;
+      else if (!lastProbeAt) consoleNodeCount.textContent = '-- / --';
+    }
+    if (consoleRtt) {
+      /* Only nodes we actually timed contribute to RTT; shielded nodes have no number. */
+      consoleRtt.textContent = probing ? '…' : Number.isFinite(averageLatency) ? `${Math.max(1, Math.round(averageLatency))} ms` : '-- ms';
+    }
     if (consoleState) {
-      const state = probing ? 'SAMPLING' : activeCount >= dashboardNodes.length ? 'NOMINAL' : activeCount > 0 ? 'DEGRADED' : 'OFFLINE';
+      const state = probing ? 'SAMPLING' : healthyCount >= total ? 'NOMINAL' : healthyCount > 0 ? 'DEGRADED' : 'OFFLINE';
       consoleState.textContent = state;
       consoleState.dataset.state = state.toLowerCase();
     }
     states?.forEach((state, index) => {
-      if (orbNodes[index]) orbNodes[index].style.opacity = state.status === 'offline' ? '.35' : state.status === 'probing' ? '.65' : '1';
+      if (!orbNodes[index]) return;
+      orbNodes[index].style.opacity = state.status === 'unreachable' ? '.35'
+        : state.status === 'degraded' ? '.55'
+        : state.status === 'probing' ? '.65'
+        : state.status === 'shielded' ? '.8'
+        : '1';
     });
   }
 
-  async function probeEndpoint(node) {
-    const healthEndpoint = node.dataset.healthEndpoint;
-    const endpoint = healthEndpoint || node.dataset.endpoint;
+  function paintNode(node, status, latencyText) {
     const statusEl = $('.node-status', node);
     const latencyEl = $('.latency-display', node);
     const pingEl = $('.telemetry-ping', node);
-    if (!endpoint || !statusEl || !latencyEl) return null;
+    const suffix = status === 'active' ? '' : ` ${status}`;
+    if (statusEl) {
+      statusEl.className = `node-status${suffix}`;
+      statusEl.textContent = STATUS_LABEL[status] || status.toUpperCase();
+    }
+    if (latencyEl) latencyEl.textContent = latencyText;
+    if (pingEl) pingEl.className = `telemetry-ping${suffix}`;
+  }
 
-    statusEl.className = 'node-status probing';
-    statusEl.textContent = 'PROBING';
-    if (pingEl) pingEl.className = 'telemetry-ping probing';
+  /*
+   * A thrown fetch cannot tell a dead service apart from a CORS policy, an offline
+   * visitor, or an ad blocker - so it never turns the card red on the first miss.
+   * Only the server answering with a bad status is treated as real evidence of trouble.
+   */
+  async function probeEndpoint(node) {
+    const mode = probeMode(node);
+    if (mode === 'none') return { id: node.id, status: 'shielded', rtt: null };
+
+    const endpoint = node.dataset.healthEndpoint || node.dataset.endpoint;
+    if (!endpoint) return { id: node.id, status: 'shielded', rtt: null };
+
+    paintNode(node, 'probing', '--');
 
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 4000);
+    const timer = setTimeout(() => controller.abort(), PROBE_TIMEOUT);
     const started = performance.now();
     try {
       const response = await fetch(endpoint, {
         method: 'GET',
-        mode: healthEndpoint ? 'cors' : 'no-cors',
+        mode: 'cors',
         cache: 'no-store',
+        redirect: 'follow',
         signal: controller.signal
       });
-      if (healthEndpoint && !response.ok) throw new Error(`Health probe returned ${response.status}`);
+      /* fetch settles on headers, so this is response time rather than full download time. */
       const rtt = Math.max(1, Math.round(performance.now() - started));
-      setNodeActive(statusEl, latencyEl, pingEl, rtt);
-      return rtt;
+
+      if (!response.ok) {
+        response.body?.cancel().catch(() => {});
+        failStreaks.set(node.id, 0);
+        paintNode(node, 'degraded', `${response.status}`);
+        return { id: node.id, status: 'degraded', rtt: null };
+      }
+
+      if (mode === 'health') {
+        const payload = await response.json().catch(() => null);
+        if (payload && payload.success === false) {
+          failStreaks.set(node.id, 0);
+          paintNode(node, 'degraded', 'ERR');
+          return { id: node.id, status: 'degraded', rtt: null };
+        }
+      } else {
+        response.body?.cancel().catch(() => {});
+      }
+
+      failStreaks.set(node.id, 0);
+      lastGoodReading.set(node.id, `${rtt} ms`);
+      paintNode(node, 'active', `${rtt} ms`);
+      return { id: node.id, status: 'active', rtt };
     } catch (_) {
-      statusEl.className = 'node-status offline';
-      statusEl.textContent = 'OFFLINE';
-      latencyEl.textContent = '--';
-      if (pingEl) pingEl.className = 'telemetry-ping offline';
-      return null;
+      const streak = (failStreaks.get(node.id) || 0) + 1;
+      failStreaks.set(node.id, streak);
+      if (streak < FAIL_STREAK_BEFORE_UNREACHABLE) {
+        /* One flaky attempt is not evidence. Restore the last good reading if we have one. */
+        const held = lastGoodReading.get(node.id);
+        if (held) paintNode(node, 'active', held);
+        else paintNode(node, 'probing', '--');
+        return { id: node.id, status: held ? 'active' : 'probing', rtt: null };
+      }
+      lastGoodReading.delete(node.id);
+      paintNode(node, 'unreachable', navigator.onLine === false ? 'OFFLINE' : '--');
+      return { id: node.id, status: 'unreachable', rtt: null };
     } finally {
-      clearTimeout(timeout);
+      clearTimeout(timer);
     }
   }
 
-  function setNodeActive(statusEl, latencyEl, pingEl, rtt) {
-    statusEl.className = 'node-status';
-    statusEl.textContent = 'ACTIVE';
-    latencyEl.textContent = `${rtt} ms`;
-    if (pingEl) pingEl.className = 'telemetry-ping';
-  }
+  let probeDeferred = false;
+  let probeRunning = false;
 
   async function runTelemetryProbes() {
-    if (document.hidden) return;
-    const probingStates = dashboardNodes.map(node => ({ id: node.id, status: 'probing', color: NODE_META[node.id]?.color }));
-    updateTelemetryModel(dashboardNodes.length, 120, true, probingStates);
-    updateHeroConsole(dashboardNodes.length, 120, true, probingStates);
+    /* Rendering is throttled in a background tab and probes would time out; defer instead. */
+    if (document.hidden) { probeDeferred = true; return; }
+    if (probeRunning) return;
+    probeRunning = true;
+    probeDeferred = false;
+    try {
+      const probingStates = dashboardNodes.map(node => ({
+        id: node.id,
+        status: probeMode(node) === 'none' ? 'shielded' : 'probing',
+        color: NODE_META[node.id]?.color
+      }));
+      updateTelemetryModel(dashboardNodes.length, NaN, true, probingStates);
+      updateHeroConsole(dashboardNodes.length, NaN, true, null);
 
-    const results = await Promise.all(dashboardNodes.map(probeEndpoint));
-    const valid = results.filter(Number.isFinite);
-    const count = valid.length;
-    const average = count ? Math.round(valid.reduce((sum, value) => sum + value, 0) / count) : 250;
-    const states = dashboardNodes.map(node => {
-      const statusEl = $('.node-status', node);
-      const status = statusEl?.classList.contains('offline') ? 'offline' : statusEl?.classList.contains('probing') ? 'probing' : 'active';
-      return { id: node.id, status, color: NODE_META[node.id]?.color };
-    });
-    updateTelemetryModel(count, average, false, states);
-    updateHeroConsole(count, average, false, states);
+      const results = await Promise.all(dashboardNodes.map(probeEndpoint));
+      const states = results.map(result => ({ ...result, color: NODE_META[result.id]?.color }));
+      const timed = results.map(result => result.rtt).filter(Number.isFinite);
+      const average = timed.length ? timed.reduce((sum, value) => sum + value, 0) / timed.length : NaN;
+      const healthy = results.filter(result => HEALTHY.has(result.status)).length;
+
+      updateTelemetryModel(healthy, average, false, states);
+      updateHeroConsole(healthy, average, false, states);
+      lastProbeAt = performance.now();
+    } finally {
+      probeRunning = false;
+    }
   }
 
   function startTelemetry() {
@@ -852,17 +949,39 @@
       else setTimeout(runTelemetryProbes, 220);
     };
     run();
-    probeInterval = setInterval(runTelemetryProbes, saveData ? 60000 : 20000);
+    probeInterval = setInterval(runTelemetryProbes, PROBE_INTERVAL);
   }
 
-  if (labSection && 'IntersectionObserver' in window) {
+  function labSectionNearViewport() {
+    if (!labSection) return false;
+    const rect = labSection.getBoundingClientRect();
+    return rect.top < innerHeight + 600 && rect.bottom > -600;
+  }
+
+  /*
+   * A page opened in a background tab has run nothing: IntersectionObserver delivery and
+   * requestIdleCallback are both tied to the rendering loop, which is suspended while
+   * hidden. So on becoming visible, start telemetry ourselves if the lab is in reach, and
+   * re-probe whenever the last reading is missing or stale - otherwise the dashboard sits
+   * on PROBING for a full interval right when someone finally looks at it.
+   */
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden || !probeableNodes.length) return;
+    if (!telemetryStarted) {
+      if (labSectionNearViewport()) startTelemetry();
+      return;
+    }
+    if (probeDeferred || !lastProbeAt || performance.now() - lastProbeAt > PROBE_INTERVAL) runTelemetryProbes();
+  });
+
+  if (probeableNodes.length && labSection && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       if (!entries.some(entry => entry.isIntersecting)) return;
       startTelemetry();
       observer.disconnect();
     }, { rootMargin: '600px 0px' });
     observer.observe(labSection);
-  } else {
+  } else if (probeableNodes.length) {
     setTimeout(startTelemetry, 1400);
   }
 
@@ -967,7 +1086,7 @@
       }
 
       function spawnPhoton(profile) {
-        const active = telemetry.nodeStates.filter(node => node.status === 'active');
+        const active = telemetry.nodeStates.filter(node => HEALTHY.has(node.status));
         if (!active.length || photons.length >= (isMobile() ? 4 : 8)) return;
         const node = active[Math.floor(Math.random() * active.length)];
         photons.push({ y: -8, speed: (82 + Math.random() * 32) * profile.speed, alpha: .62 + Math.random() * .28, size: isMobile() ? .9 : 1.08, color: node.color || baseTelemetryColor() });
@@ -1080,7 +1199,8 @@
 
       updateTelemetryModel = (activeNodes, avgLatency, probing, states) => {
         telemetry.activeNodes = activeNodes;
-        telemetry.avgLatency = avgLatency;
+        /* NaN here would poison the pulse-interval clamp and stall the heartbeat. */
+        telemetry.avgLatency = Number.isFinite(avgLatency) ? avgLatency : 120;
         telemetry.probing = probing;
         if (Array.isArray(states)) telemetry.nodeStates = states;
       };
@@ -1111,8 +1231,9 @@
       disableMotionLighting();
       doc.classList.remove('motion-capable');
       routes.forEach(hidePacket);
-    } else if (touchDevice && orientationSupported) {
-      doc.classList.add('motion-capable');
+    } else {
+      if (touchDevice && orientationSupported) doc.classList.add('motion-capable');
+      if (typedText) scheduleType(320);
     }
   });
 
