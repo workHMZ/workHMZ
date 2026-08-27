@@ -123,6 +123,17 @@ a { color: inherit; }
   outline: 2px solid var(--color-cyan);
   outline-offset: 4px;
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
 ::selection { color: var(--text-primary); background: var(--color-cyan-glow); }
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
@@ -364,8 +375,9 @@ html.motion-active .glass-card.motion-visible::after {
 .console-topbar, .console-foot, .console-summary, .stream-row { display: flex; align-items: center; justify-content: space-between; }
 .console-title { display: flex; align-items: center; gap: .5rem; color: var(--text-muted); font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; }
 .console-health { padding: .23rem .52rem; border: 1px solid color-mix(in srgb, var(--color-green) 30%, var(--border-color)); border-radius: 999px; color: var(--color-green); background: var(--color-green-glow); font-family: var(--font-mono); font-size: .64rem; font-weight: 600; }
-.console-health[data-state='degraded'] { color: #eab308; }
-.console-health[data-state='offline'] { color: var(--color-orange); }
+.console-health[data-state='degraded'] { color: #eab308; border-color: rgba(234,179,8,.3); background: rgba(234,179,8,.08); }
+.console-health[data-state='offline'] { color: var(--color-orange); border-color: color-mix(in srgb, var(--color-orange) 30%, var(--border-color)); background: var(--color-orange-glow); }
+.console-health[data-state='standby'], .console-health[data-state='sampling'] { color: var(--text-muted); border-color: var(--border-color); background: var(--bg-tertiary); }
 
 .system-orb { position: relative; width: 190px; height: 190px; margin: 2.2rem auto; display: grid; place-items: center; }
 .orb-ring { position: absolute; border: 1px solid var(--border-color); border-radius: 50%; }
@@ -660,6 +672,18 @@ html.telemetry-beat-b.telemetry-engaged .telemetry-controller::before { animatio
 .node-status.offline { color: var(--color-orange); border-color: rgba(234,88,12,.2); background: rgba(234,88,12,.075); }
 .node-status.probing { color: var(--text-muted); border-color: var(--border-color); background: var(--bg-tertiary); }
 .node-status.probing::before { width: 8px; height: 8px; border: 1.5px solid currentColor; border-top-color: transparent; background: transparent; box-shadow: none; animation: spinner .8s linear infinite; }
+
+/* Un-probeable by design (WAF challenge) - informational, never a fault colour. */
+.node-status.shielded { color: var(--color-cyan); border-color: color-mix(in srgb, var(--color-cyan) 24%, var(--border-color)); background: var(--color-cyan-glow); }
+/* The server answered, and answered badly - this is the only real warning state. */
+.node-status.degraded { color: #eab308; border-color: rgba(234,179,8,.24); background: rgba(234,179,8,.08); }
+/* Fetch threw: could be the service, could be CORS, could be the visitor's network. Stay neutral. */
+.node-status.unreachable { color: var(--text-muted); border-color: var(--border-color); background: var(--bg-tertiary); }
+.node-status.unreachable::before { background: transparent; border: 1.5px solid currentColor; box-shadow: none; }
+
+.telemetry-ping.shielded { background: var(--color-cyan); box-shadow: 0 0 8px var(--color-cyan-glow); }
+.telemetry-ping.degraded { background: #eab308; box-shadow: none; }
+.telemetry-ping.unreachable { background: var(--text-muted); box-shadow: none; opacity: .55; }
 @keyframes spinner { to { transform: rotate(360deg); } }
 
 .infra-foundation-bar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 1.7rem; padding: 0; border-radius: 16px; overflow: hidden; align-items: stretch; }
