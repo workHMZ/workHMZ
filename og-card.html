@@ -4,42 +4,46 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1200px;height:630px;overflow:hidden}
 .card{width:1200px;height:630px;position:relative;overflow:hidden}
-body{background:#0e0c0b;font-family:'Space Grotesk',-apple-system,sans-serif;color:#fcfbfa;position:relative}
-.grid{position:absolute;inset:0;background-image:radial-gradient(rgba(212,178,149,.11) 1.4px,transparent 1.4px);background-size:38px 38px;
+body{background:#0c0b0a;font-family:'Space Grotesk',-apple-system,sans-serif;color:#f5f2ee;position:relative}
+.grid{position:absolute;inset:0;background-image:radial-gradient(rgba(232,220,205,.09) 1.4px,transparent 1.4px);background-size:38px 38px;
  -webkit-mask-image:radial-gradient(circle at 50% 42%,#000 40%,transparent 92%)}
-.blob{position:absolute;border-radius:50%;filter:blur(110px)}
-.b1{top:-90px;left:-40px;width:520px;height:520px;background:#b68d78;opacity:.22}
-.b2{bottom:-160px;right:-60px;width:560px;height:560px;background:#10b981;opacity:.17}
+.glow{position:absolute;border-radius:50%}
+.g1{top:-220px;left:-160px;width:760px;height:760px;background:radial-gradient(closest-side,rgba(214,191,159,.16),transparent)}
+.g2{bottom:-300px;right:-200px;width:820px;height:820px;background:radial-gradient(closest-side,rgba(52,211,153,.07),transparent)}
+.rail{position:absolute;top:0;bottom:0;right:42px;width:1px;background:linear-gradient(180deg,transparent,rgba(52,211,153,.35) 20%,rgba(52,211,153,.35) 80%,transparent)}
 .wrap{position:relative;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 84px}
-.logo{display:flex;align-items:center;gap:11px;font-family:'Fira Code',monospace;font-size:29px;font-weight:600;margin-bottom:34px;color:#fcfbfa}
+.logo{display:flex;align-items:center;gap:11px;font-family:'Fira Code',monospace;font-size:28px;font-weight:600;margin-bottom:38px;color:#f5f2ee}
 .logo svg{display:block;flex:0 0 auto}
-.logo .d{color:#10b981}
-h1{font-size:82px;font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-bottom:20px}
-h1 .g{background:linear-gradient(100deg,#dfc2a8,#b68d78 45%,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.role{font-family:'Fira Code',monospace;font-size:25px;color:#dfc2a8;letter-spacing:.01em;margin-bottom:40px}
+.logo .d{color:#34d399}
+.kicker{display:flex;align-items:center;gap:12px;font-family:'Fira Code',monospace;font-size:21px;color:#cfc7bd;margin-bottom:18px}
+.dot{width:10px;height:10px;border-radius:50%;background:#34d399;box-shadow:0 0 0 5px rgba(52,211,153,.14)}
+h1{font-size:84px;font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-bottom:22px}
+h1 .a{color:#d6bf9f}
+.role{font-size:25px;color:#cfc7bd;margin-bottom:42px;letter-spacing:-.005em}
 .metrics{display:flex;gap:14px}
-.m{flex:1;padding:17px 20px;border:1px solid rgba(212,178,149,.13);border-radius:14px;background:rgba(22,19,17,.62)}
-.m b{display:block;font-family:'Fira Code',monospace;font-size:26px;font-weight:600;margin-bottom:5px}
-.m span{display:block;font-size:13.5px;color:#9c897f;line-height:1.3}
-.foot{position:absolute;left:84px;right:84px;bottom:44px;display:flex;justify-content:space-between;align-items:center;
- font-family:'Fira Code',monospace;font-size:16px;color:#9c897f}
-.live{display:flex;align-items:center;gap:9px;color:#10b981}
-.dot{width:9px;height:9px;border-radius:50%;background:#10b981;box-shadow:0 0 12px rgba(16,185,129,.75)}
+.m{flex:1;padding:18px 20px;border:1px solid rgba(232,220,205,.1);border-radius:14px;background:rgba(24,22,20,.72)}
+.m b{display:block;font-family:'Fira Code',monospace;font-size:27px;font-weight:600;margin-bottom:6px}
+.m span{display:block;font-size:14px;color:#938a80;line-height:1.3}
+.foot{position:absolute;left:84px;right:84px;bottom:42px;display:flex;justify-content:space-between;align-items:center;
+ font-family:'Fira Code',monospace;font-size:16px;color:#938a80}
+.live{display:flex;align-items:center;gap:10px;color:#cfc7bd}
+.live i{width:8px;height:8px;border-radius:50%;background:#34d399}
 </style></head><body><div class="card">
-<div class="grid"></div><div class="blob b1"></div><div class="blob b2"></div>
+<div class="grid"></div><div class="glow g1"></div><div class="glow g2"></div><div class="rail"></div>
 <div class="wrap">
   <div class="logo">
-    <svg width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="3.6" width="18.8" height="16.8" rx="2.6"/><path d="M7.4 9.6 L9.9 12.1 L7.4 14.6"/><path d="M12.6 15.1 H16.6"/></svg>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="3.6" width="18.8" height="16.8" rx="2.6"/><path d="M7.4 9.6 L9.9 12.1 L7.4 14.6"/><path d="M12.6 15.1 H16.6"/></svg>
     <span>mingzhe<span class="d">.uk</span></span>
   </div>
-  <h1>Akira &mdash; <span class="g">DevOps &amp; SRE</span></h1>
-  <div class="role">AI Infrastructure &middot; CI/CD &middot; Observability &middot; Cloud Edge</div>
+  <div class="kicker"><span class="dot"></span>AI Platform Engineer &middot; LLMOps &middot; DevOps</div>
+  <h1>Akira <span class="a">&mdash;</span> AI Platform</h1>
+  <div class="role">RAG pipelines, LLM evaluation and guardrails, with the CI/CD and observability underneath.</div>
   <div class="metrics">
-    <div class="m"><b>4+ yrs</b><span>system development &amp; operations</span></div>
-    <div class="m"><b>10k+ PDFs</b><span>RAG document pipeline</span></div>
-    <div class="m"><b>+22pt</b><span>search success improvement</span></div>
-    <div class="m"><b>60%</b><span>deployment time reduction</span></div>
+    <div class="m"><b>43&rarr;65%</b><span>RAG search success</span></div>
+    <div class="m"><b>5,500</b><span>E2E cases automated, solo</span></div>
+    <div class="m"><b>&minus;60%</b><span>deployment time</span></div>
+    <div class="m"><b>4+ yrs</b><span>development &amp; operations</span></div>
   </div>
 </div>
-<div class="foot"><span class="live"><span class="dot"></span>LIVE INFRASTRUCTURE &middot; 3 NODES</span><span>Based in Japan</span></div>
+<div class="foot"><span class="live"><i></i>LIVE SYSTEMS &middot; PROBED FROM YOUR BROWSER</span><span>Based in Japan</span></div>
 </div></body></html>
