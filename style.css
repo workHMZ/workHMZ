@@ -18,7 +18,6 @@
   --text-secondary: #3b3631;
   --text-muted: #766d64;
   --accent: #8b6a4f;
-  --accent-strong: #6f523b;
   --accent-glow: rgba(139, 106, 79, 0.13);
   --color-green: #047857;
   --color-green-glow: rgba(4, 120, 87, 0.12);
@@ -55,7 +54,6 @@
   --gutter: 2rem;
   --transition-fast: 180ms;
   --transition-normal: 320ms;
-  --transition-slow: 720ms;
   --ease-out-premium: cubic-bezier(.16, 1, .3, 1);
   --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic UI', 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Fira Code', 'SFMono-Regular', ui-monospace, 'Hiragino Sans', Consolas, monospace;
@@ -74,7 +72,6 @@
   --text-secondary: #cfc7bd;
   --text-muted: #938a80;
   --accent: #d6bf9f;
-  --accent-strong: #eadbc6;
   --accent-glow: rgba(214, 191, 159, 0.13);
   --color-green: #34d399;
   --color-green-glow: rgba(52, 211, 153, 0.14);
@@ -468,7 +465,7 @@ html.telemetry-beat-b .orb-core { animation: orb-monitor-beat-b .82s var(--ease-
 .layer-label i { font-size: .8rem; }
 
 .tag-row { display: flex; flex-wrap: wrap; gap: .42rem; }
-.tag, .service-runtime-pill { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; padding: .24rem .6rem; border: 1px solid var(--border-color); border-radius: 7px; background: var(--bg-tertiary); color: var(--text-secondary); font-family: var(--font-mono); font-size: .72rem; font-weight: 500; white-space: nowrap; transition: border-color var(--transition-fast), color var(--transition-fast); }
+.tag { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; padding: .24rem .6rem; border: 1px solid var(--border-color); border-radius: 7px; background: var(--bg-tertiary); color: var(--text-secondary); font-family: var(--font-mono); font-size: .72rem; font-weight: 500; white-space: nowrap; transition: border-color var(--transition-fast), color var(--transition-fast); }
 
 /* Route identity: the same three hues everywhere a capability shows up. */
 .route-ai { --route-color: var(--route-ai-color); --route-glow: color-mix(in srgb, var(--route-ai-color) 22%, transparent); }
@@ -795,7 +792,7 @@ html.telemetry-engaged .observability-source::after { animation: observability-h
 
 /* Track record: a commit log, newest first. */
 .record-log { position: relative; display: grid; gap: 1.15rem; padding-left: 2.4rem; list-style: none; }
-.record-log::before { content: ''; position: absolute; top: .6rem; bottom: .6rem; left: 11px; width: 2px; border-radius: 2px; width: 1px; background: var(--border-hover); transform-origin: top; }
+.record-log::before { content: ''; position: absolute; top: .6rem; bottom: .6rem; left: 11px; width: 1px; border-radius: 2px; background: var(--border-hover); transform-origin: top; }
 @supports (animation-timeline: view()) {
   /* The rail draws itself as you scroll through the log - compositor-driven, no JS. */
   .record-log::before { animation: rail-draw linear both; animation-timeline: view(); animation-range: entry 5% cover 60%; }
@@ -1076,6 +1073,7 @@ html[lang='ja'] .hero-headline { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
   .capability-routing-layer, .telemetry-controller, .telemetry-pulse-canvas { display: none !important; }
+  .glass-card { transform: none !important; transition-property: border-color, box-shadow, background-color; }
   .reveal, html[data-js='ready'] .reveal, html[data-js='ready'] .record-entry .record-card { opacity: 1 !important; transform: none !important; transition: none !important; }
   .record-log::before { transform: none !important; }
 }

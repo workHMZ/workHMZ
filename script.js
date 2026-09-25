@@ -137,6 +137,7 @@
   const navLinks = $('#nav-links');
   const menuToggle = $('#menu-toggle');
   const menuIcon = menuToggle ? $('i', menuToggle) : null;
+  const menuBackground = $$('main, footer');
 
   function syncMenuLabel() {
     if (!menuToggle) return;
@@ -146,20 +147,44 @@
 
   function setMenu(open) {
     if (!navLinks || !menuToggle) return;
+    open = open && navQuery.matches;
+    const wasOpen = navLinks.classList.contains('active');
     navLinks.classList.toggle('active', open);
     menuToggle.setAttribute('aria-expanded', String(open));
     syncMenuLabel();
     if (menuIcon) menuIcon.className = open ? 'ri-close-line' : 'ri-menu-3-line';
     body.style.overflow = open ? 'hidden' : '';
+    menuBackground.forEach(element => { element.inert = open; });
+    if (open) {
+      /* Wait until the visibility transition makes the links focusable. */
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (navLinks.classList.contains('active')) $('a[href]', navLinks)?.focus({ preventScroll: true });
+      }));
+    } else if (wasOpen) {
+      /* The menu button disappears when resizing back to desktop. */
+      const target = navQuery.matches ? menuToggle
+        : document.activeElement === menuToggle ? $('a[href]', navLinks) : null;
+      target?.focus({ preventScroll: true });
+    }
   }
 
   menuToggle?.addEventListener('click', () => setMenu(!navLinks?.classList.contains('active')));
-  $$('#nav-links a[href^="#"]').forEach(link => link.addEventListener('click', () => setMenu(false)));
+  $$('#navbar a[href^="#"]').forEach(link => link.addEventListener('click', () => setMenu(false)));
   navQuery.addEventListener?.('change', event => { if (!event.matches) setMenu(false); });
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && navLinks?.classList.contains('active')) {
+    if (!navLinks?.classList.contains('active')) return;
+    if (event.key === 'Escape') {
       setMenu(false);
-      menuToggle?.focus();
+    } else if (event.key === 'Tab') {
+      /* Include the logo and close button in the sheet's keyboard loop. */
+      const controls = $$('a[href], button:not([disabled])', navbar);
+      const first = controls[0];
+      const last = controls.at(-1);
+      const outside = !controls.includes(document.activeElement);
+      if (outside || (event.shiftKey ? document.activeElement === first : document.activeElement === last)) {
+        event.preventDefault();
+        (event.shiftKey ? last : first)?.focus({ preventScroll: true });
+      }
     }
   });
   syncMenuLabel();
@@ -249,53 +274,55 @@
   }
 
   /* Desktop glass tilt */
-  if (finePointer.matches && !prefersReducedMotion.matches) {
-    $$('.glass-card').forEach(card => {
-      let rect = null;
-      let pointerX = 0;
-      let pointerY = 0;
-      let raf = 0;
+  $$('.glass-card').forEach(card => {
+    let rect = null;
+    let pointerX = 0;
+    let pointerY = 0;
+    let raf = 0;
 
-      const render = () => {
-        raf = 0;
-        if (!rect) return;
-        const x = pointerX - rect.left;
-        const y = pointerY - rect.top;
-        const nx = (x / rect.width) * 2 - 1;
-        const ny = (y / rect.height) * 2 - 1;
-        /* Wide cards tilt less, or the far edge swings out of the grid. */
-        const strength = rect.width > 720 ? 2.2 : 5.5;
-        card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
-        card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
-        card.style.setProperty('--rotate-x', `${(-ny * strength).toFixed(2)}deg`);
-        card.style.setProperty('--rotate-y', `${(nx * strength).toFixed(2)}deg`);
-        card.style.setProperty('--card-y', '-4px');
-      };
+    const render = () => {
+      raf = 0;
+      if (!rect || !finePointer.matches || prefersReducedMotion.matches) return;
+      const x = pointerX - rect.left;
+      const y = pointerY - rect.top;
+      const nx = (x / rect.width) * 2 - 1;
+      const ny = (y / rect.height) * 2 - 1;
+      /* Wide cards tilt less, or the far edge swings out of the grid. */
+      const strength = rect.width > 720 ? 2.2 : 5.5;
+      card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
+      card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
+      card.style.setProperty('--rotate-x', `${(-ny * strength).toFixed(2)}deg`);
+      card.style.setProperty('--rotate-y', `${(nx * strength).toFixed(2)}deg`);
+      card.style.setProperty('--card-y', '-4px');
+    };
 
-      card.addEventListener('pointerenter', event => {
-        rect = card.getBoundingClientRect();
-        pointerX = event.clientX;
-        pointerY = event.clientY;
-        render();
-      });
-      card.addEventListener('pointermove', event => {
-        if (!rect) return;
-        pointerX = event.clientX;
-        pointerY = event.clientY;
-        if (!raf) raf = requestAnimationFrame(render);
-      });
-      card.addEventListener('pointerleave', () => {
-        rect = null;
-        if (raf) cancelAnimationFrame(raf);
-        raf = 0;
-        card.style.setProperty('--rotate-x', '0deg');
-        card.style.setProperty('--rotate-y', '0deg');
-        card.style.setProperty('--card-y', '0px');
-        card.style.setProperty('--mouse-x', '-500px');
-        card.style.setProperty('--mouse-y', '-500px');
-      });
+    card.addEventListener('pointerenter', event => {
+      if (!finePointer.matches || prefersReducedMotion.matches) return;
+      rect = card.getBoundingClientRect();
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      render();
     });
-  }
+    card.addEventListener('pointermove', event => {
+      if (!rect || !finePointer.matches || prefersReducedMotion.matches) return;
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      if (!raf) raf = requestAnimationFrame(render);
+    });
+    const resetTilt = () => {
+      rect = null;
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      card.style.setProperty('--rotate-x', '0deg');
+      card.style.setProperty('--rotate-y', '0deg');
+      card.style.setProperty('--card-y', '0px');
+      card.style.setProperty('--mouse-x', '-500px');
+      card.style.setProperty('--mouse-y', '-500px');
+    };
+    card.addEventListener('pointerleave', resetTilt);
+    finePointer.addEventListener?.('change', resetTilt);
+    prefersReducedMotion.addEventListener?.('change', resetTilt);
+  });
 
   /*
    * Capability routing: one packet per route flies from its capability card to the system
@@ -893,14 +920,14 @@
         : state.status === 'shielded' ? '.8'
         : '1';
     });
-    return { healthy, average };
+    return average;
   }
 
   function commitReadings() {
     const states = currentStates();
-    const { healthy, average } = updateHeroConsole(states);
+    const average = updateHeroConsole(states);
     telemetryAvgLatency = average;
-    updateTelemetryModel(healthy, average, states);
+    updateTelemetryModel(states);
   }
 
   function tickSampled() {
@@ -962,7 +989,7 @@
   let telemetryPulse = () => null;
   let telemetryAttachSample = () => {};
 
-  if (pulseCanvas && !prefersReducedMotion.matches) {
+  if (pulseCanvas) {
     const ctx = pulseCanvas.getContext('2d', { alpha: true, desynchronized: true });
     if (ctx) {
       let canvasCssWidth = 0;
@@ -1148,8 +1175,9 @@
       }
 
       function renderTelemetry(now) {
-        raf = requestAnimationFrame(renderTelemetry);
+        raf = 0;
         if (document.hidden || prefersReducedMotion.matches) return;
+        raf = requestAnimationFrame(renderTelemetry);
         /*
          * The filament drifts at ~75px/s, so 30fps reads the same on a phone and halves the
          * battery cost. Safari never exposes navigator.connection, so saveData alone never fires there.
@@ -1164,7 +1192,7 @@
       }
 
       telemetryPulse = (breath = 0) => {
-        if (!canvasHeight) return null;
+        if (!canvasHeight || document.hidden || prefersReducedMotion.matches) return null;
         const profile = sectionProfile[activeSectionId] || sectionProfile.home;
         const engagedBoost = doc.classList.contains('telemetry-engaged') ? 1.08 : 1;
         return spawnPulse(performance.now(), { ...profile, amp: profile.amp * engagedBoost }, breath);
@@ -1186,7 +1214,7 @@
         flashStrength = 1;
       };
 
-      updateTelemetryModel = (healthy, average, states) => {
+      updateTelemetryModel = states => {
         const measured = states.filter(state => state.status !== 'probing' && state.status !== 'shielded');
         telemetry.measured = measured.length;
         telemetry.faults = measured.filter(state => !HEALTHY.has(state.status)).length;
@@ -1196,19 +1224,33 @@
       addEventListener('resize', resizePulseDebounced, { passive: true });
       onOrientationChange(() => setTimeout(() => resizePulseCanvas(true), 180));
       addEventListener('portfolio-theme-change', () => { flashStrength = Math.max(flashStrength, .18); });
-      resizePulseCanvas(true);
-      raf = requestAnimationFrame(renderTelemetry);
 
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          if (raf) cancelAnimationFrame(raf);
-          raf = 0;
-          lastFrame = 0;
-          lastDraw = 0;
-        } else if (!raf) {
+      function stopTelemetryAnimation() {
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+        lastFrame = 0;
+        lastDraw = 0;
+        pulses.length = 0;
+        flashStrength = 0;
+        ctx.clearRect(0, 0, canvasCssWidth, canvasHeight);
+      }
+
+      function syncTelemetryAnimation() {
+        if (document.hidden || prefersReducedMotion.matches) {
+          stopTelemetryAnimation();
+          return;
+        }
+        resizePulseCanvas();
+        if (!raf) {
           raf = requestAnimationFrame(renderTelemetry);
         }
-      });
+      }
+
+      document.addEventListener('visibilitychange', syncTelemetryAnimation);
+      prefersReducedMotion.addEventListener?.('change', syncTelemetryAnimation);
+      addEventListener('pagehide', stopTelemetryAnimation);
+      addEventListener('pageshow', syncTelemetryAnimation);
+      syncTelemetryAnimation();
     }
   }
 
@@ -1247,7 +1289,7 @@
     if (!document.hidden && typedText && !prefersReducedMotion.matches) scheduleType(260);
   });
 
-  addEventListener('pagehide', event => {
+  addEventListener('pagehide', () => {
     clearTimeout(typingTimer);
     clearTimeout(beatTimer);
     beatTimer = 0;
