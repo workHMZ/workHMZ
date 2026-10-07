@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="588" height="220" viewBox="0 0 588 220" role="img" aria-labelledby="title desc">
+<title id="title">Vertex2OpenAI</title>
+<desc id="desc">OpenAI clients → Vertex AI Gemini. View the project on GitHub.</desc>
+<rect x="1" y="1" width="586" height="218" rx="12" fill="#151718" stroke="#303435"/>
+<g transform="translate(47 45) scale(0.7)" fill="none" stroke="#d6bf9f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m-10-13-12 13 12 13m20-26 12 13-12 13M5-20-5 20"/></g>
+<text x="82" y="50" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="400" fill="#b5b8b3" text-anchor="start" letter-spacing="1">OPEN SOURCE</text>
+<text x="30" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="37" font-weight="600" fill="#f5f2ee" text-anchor="start" letter-spacing="0">Vertex2OpenAI</text>
+<text x="30" y="161" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" font-weight="400" fill="#b5b8b3" text-anchor="start" letter-spacing="0">OpenAI clients → Vertex AI Gemini</text>
+<circle cx="536" cy="47" r="23" fill="#d6bf9f" fill-opacity=".12"/>
+<path d="M528 55l16-16m-16 0h16v16" fill="none" stroke="#d6bf9f" stroke-width="1.8"/>
+</svg>

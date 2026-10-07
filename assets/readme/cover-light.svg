@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+  <title id="title">Akira — AI Platform Engineer</title>
+  <desc id="desc">An engineering profile in Japan, focused on RAG, LLMOps and cloud platforms. A connected diagram moves from retrieval through evaluation to delivery.</desc>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#e4dfd6" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="1200" height="380" rx="12" fill="#f4f1eb"/>
+  <path d="M790 0H1188Q1200 0 1200 12V368Q1200 380 1188 380H790Z" fill="url(#grid)"/>
+  <path d="M48 54H78" stroke="#826043" stroke-width="3"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <text x="92" y="60" fill="#62594f" font-size="16" letter-spacing="2.5">ENGINEERING / JAPAN</text>
+    <text x="44" y="172" fill="#202321" font-size="100" font-weight="700" letter-spacing="-4">Hi, I'm Akira.</text>
+    <text x="48" y="239" fill="#826043" font-size="46" font-weight="500" letter-spacing="-1">AI Platform Engineer</text>
+    <text x="49" y="291" fill="#62594f" font-size="23">RAG · LLMOps · Cloud platforms</text>
+  </g>
+  <g fill="none" stroke="#b0a79a" stroke-width="1.5">
+    <path d="M968 119V150M968 218V249"/>
+    <path d="m962 142 6 8 6-8m-12 99 6 8 6-8"/>
+    <path d="M1094 283H1120V85H1094" stroke-dasharray="4 6"/>
+    <rect x="842" y="51" width="252" height="68" rx="8" fill="#fbfaf7"/>
+    <rect x="842" y="150" width="252" height="68" rx="8" fill="#ede6db" stroke="#826043"/>
+    <rect x="842" y="249" width="252" height="68" rx="8" fill="#fbfaf7"/>
+  </g>
+  <g font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="18">
+    <g fill="#70675b"><text x="862" y="92">01</text><text x="862" y="191">02</text><text x="862" y="290">03</text></g>
+    <g fill="#202321" letter-spacing="1.5"><text x="908" y="92">RETRIEVE</text><text x="908" y="191">EVALUATE</text><text x="908" y="290">DELIVER</text></g>
+  </g>
+  <path d="M48 341H1152" stroke="#e4dfd6"/>
+  <g font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="12" fill="#70675b" letter-spacing="1.5">
+    <text x="49" y="363">FROM APPLICATION LOGIC TO THE PLATFORM UNDERNEATH.</text>
+    <text x="1152" y="363" text-anchor="end">workHMZ / 01</text>
+  </g>
+</svg>

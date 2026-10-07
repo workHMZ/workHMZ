@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="188" viewBox="0 0 1200 188" role="img" aria-labelledby="title desc">
+<title id="title">RAG Delivery Lab</title>
+<desc id="desc">Build → Scan → Sign → Deploy. View the project on GitHub.</desc>
+<rect x="1" y="1" width="1198" height="186" rx="12" fill="#151718" stroke="#303435"/>
+<rect x="32" y="46" width="88" height="88" rx="22" fill="#9abbd6" fill-opacity=".09"/>
+<g transform="translate(76 90) scale(1.3)" fill="none" stroke="#9abbd6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M0-19 16-13v13c0 10-9 17-16 21C-7 17-16 10-16 0v-13zM-8 0l6 6L9-7"/></g>
+<text x="152" y="51" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="400" fill="#b5b8b3" text-anchor="start" letter-spacing="2">OPEN SOURCE</text>
+<text x="150" y="98" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="39" font-weight="600" fill="#f5f2ee" text-anchor="start" letter-spacing="0">RAG Delivery Lab</text>
+<text x="152" y="139" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" font-weight="400" fill="#b5b8b3" text-anchor="start" letter-spacing="0">Build → Scan → Sign → Deploy</text>
+<path d="M807 93H864M929 93H986" stroke="#9abbd6" stroke-width="1.5" fill="none"/>
+<g transform="translate(780 93) scale(1.1)" fill="none" stroke="#9abbd6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="-9" cy="-13" r="4"/><circle cx="12" cy="-10" r="4"/><circle cx="-9" cy="14" r="4"/><path d="M-9-9v19M12-6v1C12 4-9 0-9 9"/></g>
+<g transform="translate(897 93) scale(1.1)" fill="none" stroke="#9abbd6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M0-19 16-13v13c0 10-9 17-16 21C-7 17-16 10-16 0v-13zM-8 0l6 6L9-7"/></g>
+<g transform="translate(1017 93) scale(1.1)" fill="none" stroke="#9abbd6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m0-18 18 10v21L0 23l-18-10V-8zM-18-8 0 2l18-10M0 2v21M-9-13 9-3v8"/></g>
+<circle cx="1143" cy="93" r="23" fill="#9abbd6" fill-opacity=".12"/>
+<path d="M1135 101l16-16m-16 0h16v16" fill="none" stroke="#9abbd6" stroke-width="1.8"/>
+</svg>

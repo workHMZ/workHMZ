@@ -54,6 +54,7 @@ window.PORTFOLIO_I18N = {
 
       'hero.cta.systems': 'システムを見る',
       'hero.cta.record': '実績を見る',
+      'profile.cta': 'パーソナルサイト',
       'console.cadence': 'ブラウザから計測',
 
       'cap.title': '構築して、運用する',

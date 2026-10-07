@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="588" height="1440" viewBox="0 0 588 1440" role="img" aria-labelledby="title desc">
+<title id="title">Focus areas — what I build and run</title>
+<desc id="desc">RAG search success improved from 43% to 65%. Deployment time reduced by about 60%. RAG: documents to retrieval to answers. Delivery: commit, scan and sign, release. Observability: trace, evaluate, improve. Infrastructure: cloud, edge and private lab.</desc>
+<g transform="translate(0 0)">
+<rect x="1" y="1" width="586" height="346" rx="12" fill="#f6f3ed" stroke="#ded9cf"/>
+<text x="30" y="46" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="400" fill="#846448" text-anchor="start" letter-spacing="0">01</text>
+<text x="72" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="27" font-weight="600" fill="#242623" text-anchor="start" letter-spacing="0">AI &amp; RAG Platforms</text>
+<text x="30" y="108" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="38" font-weight="600" fill="#846448" text-anchor="start" letter-spacing="0">43% → 65%</text>
+<text x="263" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#62685e" text-anchor="start" letter-spacing="0">search success</text>
+<path d="M122 176H257" stroke="#846448" stroke-width="1.6" fill="none"/>
+<path d="m251 171 6 5-6 5" stroke="#846448" stroke-width="1.6" fill="none"/>
+<path d="M328 176H463" stroke="#846448" stroke-width="1.6" fill="none"/>
+<path d="m457 171 6 5-6 5" stroke="#846448" stroke-width="1.6" fill="none"/>
+<rect x="53" y="141" width="70" height="70" rx="18" fill="#846448" fill-opacity=".09" stroke="#846448" stroke-opacity=".45"/>
+<g transform="translate(88 176) scale(1)" fill="none" stroke="#846448" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-14-13h23v31h-23zM-8-19h23v31M-8-4H3M-8 3H3M-8 10H0"/></g>
+<text x="88" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Documents</text>
+<rect x="259" y="141" width="70" height="70" rx="18" fill="#846448" fill-opacity=".09" stroke="#846448" stroke-opacity=".45"/>
+<g transform="translate(294 176) scale(1)" fill="none" stroke="#846448" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="-3" cy="-3" r="12"/><path d="m6 6 12 12M-3-8v10M-8-3H2"/></g>
+<text x="294" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Retrieval</text>
+<rect x="465" y="141" width="70" height="70" rx="18" fill="#846448" fill-opacity=".09" stroke="#846448" stroke-opacity=".45"/>
+<g transform="translate(500 176) scale(1)" fill="none" stroke="#846448" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-18-15h36v25H-6l-8 7v-7h-4zM-10-6H10M-10 1H3"/></g>
+<text x="500" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Answers</text>
+<path d="M30 281H558" stroke="#ded9cf"/>
+<text x="30" y="318" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#62685e" text-anchor="start" letter-spacing="0">Bedrock · Dify · OpenSearch</text>
+</g>
+<g transform="translate(0 364)">
+<rect x="1" y="1" width="586" height="346" rx="12" fill="#f6f3ed" stroke="#ded9cf"/>
+<text x="30" y="46" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="400" fill="#366683" text-anchor="start" letter-spacing="0">02</text>
+<text x="72" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="27" font-weight="600" fill="#242623" text-anchor="start" letter-spacing="0">CI/CD &amp; DevSecOps</text>
+<text x="30" y="108" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="38" font-weight="600" fill="#366683" text-anchor="start" letter-spacing="0">~60%</text>
+<text x="158" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#62685e" text-anchor="start" letter-spacing="0">less time to deploy</text>
+<path d="M122 176H257" stroke="#366683" stroke-width="1.6" fill="none"/>
+<path d="m251 171 6 5-6 5" stroke="#366683" stroke-width="1.6" fill="none"/>
+<path d="M328 176H463" stroke="#366683" stroke-width="1.6" fill="none"/>
+<path d="m457 171 6 5-6 5" stroke="#366683" stroke-width="1.6" fill="none"/>
+<rect x="53" y="141" width="70" height="70" rx="18" fill="#366683" fill-opacity=".09" stroke="#366683" stroke-opacity=".45"/>
+<g transform="translate(88 176) scale(1)" fill="none" stroke="#366683" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="-9" cy="-13" r="4"/><circle cx="12" cy="-10" r="4"/><circle cx="-9" cy="14" r="4"/><path d="M-9-9v19M12-6v1C12 4-9 0-9 9"/></g>
+<text x="88" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Commit</text>
+<rect x="259" y="141" width="70" height="70" rx="18" fill="#366683" fill-opacity=".09" stroke="#366683" stroke-opacity=".45"/>
+<g transform="translate(294 176) scale(1)" fill="none" stroke="#366683" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M0-19 16-13v13c0 10-9 17-16 21C-7 17-16 10-16 0v-13zM-8 0l6 6L9-7"/></g>
+<text x="294" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Scan &amp; sign</text>
+<rect x="465" y="141" width="70" height="70" rx="18" fill="#366683" fill-opacity=".09" stroke="#366683" stroke-opacity=".45"/>
+<g transform="translate(500 176) scale(1)" fill="none" stroke="#366683" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m0-18 18 10v21L0 23l-18-10V-8zM-18-8 0 2l18-10M0 2v21M-9-13 9-3v8"/></g>
+<text x="500" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Release</text>
+<path d="M30 281H558" stroke="#ded9cf"/>
+<text x="30" y="318" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#62685e" text-anchor="start" letter-spacing="0">GitHub Actions · Docker · Cosign</text>
+</g>
+<g transform="translate(0 728)">
+<rect x="1" y="1" width="586" height="346" rx="12" fill="#f6f3ed" stroke="#ded9cf"/>
+<text x="30" y="46" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="400" fill="#72608f" text-anchor="start" letter-spacing="0">03</text>
+<text x="72" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="27" font-weight="600" fill="#242623" text-anchor="start" letter-spacing="0">Evaluation &amp; Observability</text>
+<text x="30" y="89" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#62685e" text-anchor="start" letter-spacing="0">See what happened. Find what to improve.</text>
+<path d="M122 176H257" stroke="#72608f" stroke-width="1.6" fill="none"/>
+<path d="m251 171 6 5-6 5" stroke="#72608f" stroke-width="1.6" fill="none"/>
+<path d="M328 176H463" stroke="#72608f" stroke-width="1.6" fill="none"/>
+<path d="m457 171 6 5-6 5" stroke="#72608f" stroke-width="1.6" fill="none"/>
+<rect x="53" y="141" width="70" height="70" rx="18" fill="#72608f" fill-opacity=".09" stroke="#72608f" stroke-opacity=".45"/>
+<g transform="translate(88 176) scale(1)" fill="none" stroke="#72608f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-21 11h8V-9h13V3h12V-16h9"/><circle cx="-21" cy="11" r="2"/><circle cx="21" cy="-16" r="2"/></g>
+<text x="88" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Trace</text>
+<rect x="259" y="141" width="70" height="70" rx="18" fill="#72608f" fill-opacity=".09" stroke="#72608f" stroke-opacity=".45"/>
+<g transform="translate(294 176) scale(1)" fill="none" stroke="#72608f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-18-11h36M-18 2h36M-18 15h36"/><circle cx="-5" cy="-11" r="4"/><circle cx="9" cy="2" r="4"/><circle cx="-10" cy="15" r="4"/></g>
+<text x="294" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Evaluate</text>
+<rect x="465" y="141" width="70" height="70" rx="18" fill="#72608f" fill-opacity=".09" stroke="#72608f" stroke-opacity=".45"/>
+<g transform="translate(500 176) scale(1)" fill="none" stroke="#72608f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15-7A17 17 0 1 0 16 8M6-7h11V-18M-7 1l5 5 9-11"/></g>
+<text x="500" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Improve</text>
+<path d="M30 281H558" stroke="#ded9cf"/>
+<text x="30" y="318" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#62685e" text-anchor="start" letter-spacing="0">Langfuse · Datadog · Terraform</text>
+</g>
+<g transform="translate(0 1092)">
+<rect x="1" y="1" width="586" height="346" rx="12" fill="#f6f3ed" stroke="#ded9cf"/>
+<text x="30" y="46" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="400" fill="#367261" text-anchor="start" letter-spacing="0">04</text>
+<text x="72" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="27" font-weight="600" fill="#242623" text-anchor="start" letter-spacing="0">Cloud &amp; Edge Platforms</text>
+<text x="30" y="89" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#62685e" text-anchor="start" letter-spacing="0">Connect services. Keep boundaries clear.</text>
+<path d="M122 176H257" stroke="#367261" stroke-width="1.6" fill="none"/>
+<path d="m251 171 6 5-6 5" stroke="#367261" stroke-width="1.6" fill="none"/>
+<path d="M328 176H463" stroke="#367261" stroke-width="1.6" fill="none"/>
+<path d="m457 171 6 5-6 5" stroke="#367261" stroke-width="1.6" fill="none"/>
+<rect x="53" y="141" width="70" height="70" rx="18" fill="#367261" fill-opacity=".09" stroke="#367261" stroke-opacity=".45"/>
+<g transform="translate(88 176) scale(1)" fill="none" stroke="#367261" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-14 14h28a10 10 0 0 0 3-20A17 17 0 0 0-16-3a9 9 0 0 0 2 17z"/></g>
+<text x="88" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Cloud</text>
+<rect x="259" y="141" width="70" height="70" rx="18" fill="#367261" fill-opacity=".09" stroke="#367261" stroke-opacity=".45"/>
+<g transform="translate(294 176) scale(1)" fill="none" stroke="#367261" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-14-16h28v32h-28zM-7-8H7M-7 0H7M-7 8H2M-23 0h9M14 0h9"/></g>
+<text x="294" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Edge</text>
+<rect x="465" y="141" width="70" height="70" rx="18" fill="#367261" fill-opacity=".09" stroke="#367261" stroke-opacity=".45"/>
+<g transform="translate(500 176) scale(1)" fill="none" stroke="#367261" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m-20-2 20-17 20 17M-14-6v25h28V-6M-5 19V6H5v13"/></g>
+<text x="500" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="500" fill="#242623" text-anchor="middle" letter-spacing="0">Private lab</text>
+<path d="M30 281H558" stroke="#ded9cf"/>
+<text x="30" y="318" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#62685e" text-anchor="start" letter-spacing="0">AWS · Azure · GCP · Cloudflare</text>
+</g>
+</svg>
