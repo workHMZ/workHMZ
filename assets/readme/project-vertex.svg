@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="338" viewBox="0 0 1200 338" role="img" aria-labelledby="title desc">
+<title id="title">Vertex2OpenAI</title>
+<desc id="desc">Use Gemini from the tools you already work with. Streaming, tool calls &amp; credential rotation. View the source on GitHub.</desc>
+<rect x="1" y="1" width="1198" height="336" rx="4" fill="#f3f0e7" stroke="#d2cfc3"/>
+<rect x="1" y="1" width="6" height="336" rx="0" fill="#dafa78"/>
+<text x="48" y="42" font-family="'Courier New', monospace" font-size="16" font-weight="400" fill="#616358" letter-spacing="0.3">01 / AI / API COMPATIBILITY</text>
+<text x="46" y="97" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" fill="#242522" letter-spacing="-1.6">Vertex2OpenAI</text>
+<path d="M1134 45l22-22m-22 0h22v22" fill="none" stroke="#242522" stroke-width="3"/>
+<text x="48" y="145" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" fill="#242522" letter-spacing="0">Use Gemini from the tools</text>
+<text x="48" y="181" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" fill="#242522" letter-spacing="0">you already work with.</text>
+<text x="48" y="221" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" fill="#616358" letter-spacing="0">Streaming, tool calls &amp; credential rotation.</text>
+<text x="48" y="270" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#616358" letter-spacing="0">TypeScript / Cloudflare Workers</text>
+<text x="48" y="307" font-family="'Courier New', monospace" font-size="16" font-weight="700" fill="#242522" letter-spacing="0">EXPLORE THE REPOSITORY</text>
+<g transform="translate(651 67)">
+<rect x="0" y="0" width="501" height="238" rx="3" fill="#252825"/>
+<text x="24" y="34" font-family="'Courier New', monospace" font-size="15" font-weight="400" fill="#dafa78" letter-spacing="0.5">ONE COMPATIBILITY LAYER</text>
+<path d="M24 52h453" stroke="#4b5145"/>
+<text x="24" y="86" font-family="'Courier New', monospace" font-size="23" font-weight="400" fill="#f3f0e7" letter-spacing="0">/v1/chat/completions</text>
+<text x="24" y="121" font-family="'Courier New', monospace" font-size="23" font-weight="400" fill="#f3f0e7" letter-spacing="0">/v1/responses</text>
+<path d="M34 143v26m-6-6 6 6 6-6" fill="none" stroke="#dafa78" stroke-width="2"/>
+<text x="58" y="166" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#dafa78" letter-spacing="0">Vertex AI / Gemini</text>
+<text x="24" y="210" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#c0c6b5" letter-spacing="0">Existing clients. A different backend.</text>
+</g>
+</svg>

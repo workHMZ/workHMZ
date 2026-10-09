@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="202" viewBox="0 0 1200 202" role="img" aria-labelledby="title desc">
+<title id="title">The work, in detail.</title>
+<desc id="desc">01 / ENGINEERING. Projects, systems &amp; engineering expertise. Visit workhmz.github.io/workHMZ.</desc>
+<rect x="1" y="1" width="1198" height="200" rx="4" fill="#252825" stroke="#4b5145"/>
+<text x="48" y="43" font-family="'Courier New', monospace" font-size="17" font-weight="400" fill="#dafa78" letter-spacing="1">01 / ENGINEERING</text>
+<text x="46" y="101" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#f3f0e7" letter-spacing="-1.5">The work, in detail.</text>
+<text x="48" y="145" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#c0c6b5" letter-spacing="0">Projects, systems &amp; engineering expertise.</text>
+<text x="806" y="173" font-family="'Courier New', monospace" font-size="18" font-weight="400" fill="#c0c6b5" letter-spacing="0">workhmz.github.io/workHMZ</text>
+<rect x="1063" y="39" width="90" height="90" rx="0" fill="#dafa78"/>
+<path d="M1093 99l30-30m-30 0h30v30" fill="none" stroke="#242522" stroke-width="3"/>
+</svg>

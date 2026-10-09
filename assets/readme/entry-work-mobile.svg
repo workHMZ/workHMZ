@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="326" viewBox="0 0 640 326" role="img" aria-labelledby="title desc">
+<title id="title">The work, in detail.</title>
+<desc id="desc">01 / ENGINEERING. Projects, systems &amp; engineering expertise. Visit workhmz.github.io/workHMZ.</desc>
+<rect x="1" y="1" width="638" height="324" rx="4" fill="#252825" stroke="#4b5145"/>
+<text x="36" y="43" font-family="'Courier New', monospace" font-size="17" font-weight="400" fill="#dafa78" letter-spacing="1">01 / ENGINEERING</text>
+<text x="35" y="106" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700" fill="#f3f0e7" letter-spacing="-1.5">The work, in detail.</text>
+<text x="36" y="151" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#c0c6b5" letter-spacing="0">Projects, systems &amp;</text>
+<text x="36" y="189" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#c0c6b5" letter-spacing="0">engineering expertise.</text>
+<path d="M36 230h568" stroke="#4b5145"/>
+<text x="36" y="282" font-family="'Courier New', monospace" font-size="23" font-weight="400" fill="#c0c6b5" letter-spacing="0">workhmz.github.io/workHMZ</text>
+<path d="M567 285l28-28m-28 0h28v28" fill="none" stroke="#dafa78" stroke-width="3"/>
+</svg>

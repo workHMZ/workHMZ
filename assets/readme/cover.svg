@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="406" viewBox="0 0 1200 406" role="img" aria-labelledby="title desc">
+<title id="title">H.mz — Akira, AI Platform Engineer in Japan</title>
+<desc id="desc">Build things. Make them work. Code, camera and curiosity.</desc>
+<rect x="1" y="1" width="1198" height="404" rx="4" fill="#f3f0e7" stroke="#d2cfc3"/>
+<text x="48" y="66" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="800" fill="#242522" letter-spacing="-2">H.mz</text>
+<rect x="162" y="53" width="9" height="9" rx="0" fill="#b9a4e5"/>
+<text x="244" y="59" font-family="'Courier New', monospace" font-size="19" font-weight="400" fill="#616358" letter-spacing="0">AKIRA / AI PLATFORM ENGINEER</text>
+<text x="996" y="59" font-family="'Courier New', monospace" font-size="17" font-weight="400" fill="#616358" letter-spacing="0">BASED IN JAPAN</text>
+<path d="M48 92h1104" stroke="#d2cfc3"/>
+<text x="44" y="188" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="800" fill="#242522" letter-spacing="-4">Build things.</text>
+<rect x="44" y="214" width="741" height="91" rx="0" fill="#dafa78"/>
+<text x="44" y="285" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="800" fill="#242522" letter-spacing="-4">Make them work.</text>
+<g transform="rotate(7 1003 208)">
+<rect x="903" y="127" width="208" height="179" rx="0" fill="#242522"/>
+<rect x="895" y="119" width="208" height="179" rx="0" fill="#b9a4e5" stroke="#242522"/>
+<text x="919" y="169" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" fill="#242522" letter-spacing="0">CODE</text>
+<text x="919" y="215" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" fill="#242522" letter-spacing="0">CAMERA</text>
+<text x="919" y="261" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#242522" letter-spacing="0">CURIOSITY</text>
+</g>
+<path d="M48 339h1104" stroke="#d2cfc3"/>
+<text x="48" y="375" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" fill="#242522" letter-spacing="0">AI systems. Useful tools. A little life outside the terminal.</text>
+<g transform="translate(1122 369)" stroke="#242522" stroke-width="7"><path d="M0 -15V15" transform="rotate(0)"/><path d="M0 -15V15" transform="rotate(45)"/><path d="M0 -15V15" transform="rotate(90)"/><path d="M0 -15V15" transform="rotate(135)"/></g>
+</svg>

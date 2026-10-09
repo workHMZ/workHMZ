@@ -1,144 +1,163 @@
 #!/usr/bin/env python3
-"""Generate the README's self-contained SVG capability and project cards."""
+"""Generate self-contained README artwork with no external fonts or dependencies."""
 from html import escape
 from pathlib import Path
 
 ASSETS = Path(__file__).resolve().parents[1] / 'assets' / 'readme'
-THEMES = {
-    'dark': dict(bg='#151718', border='#303435', text='#f5f2ee', muted='#b5b8b3', rule='#333736', gold='#d6bf9f', blue='#9abbd6', teal='#8dc7b7', violet='#bcb1d5'),
-    'light': dict(bg='#f6f3ed', border='#ded9cf', text='#242623', muted='#62685e', rule='#ded9cf', gold='#846448', blue='#366683', teal='#367261', violet='#72608f'),
-}
-FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-MONO = "'SFMono-Regular', Consolas, 'Liberation Mono', monospace"
+PAPER, INK, MUTED, LINE = '#f3f0e7', '#242522', '#616358', '#d2cfc3'
+LIME, PURPLE, NIGHT = '#dafa78', '#b9a4e5', '#252825'
+FONT, MONO = 'Arial, Helvetica, sans-serif', "'Courier New', monospace"
 
 
-def text(x, y, value, size, fill, weight=400, anchor='start', mono=False, spacing=0):
-    family = MONO if mono else FONT
-    return f'<text x="{x}" y="{y}" font-family="{family}" font-size="{size}" font-weight="{weight}" fill="{fill}" text-anchor="{anchor}" letter-spacing="{spacing}">{escape(value)}</text>'
+def text(x, y, value, size=24, fill=INK, weight=400, mono=False, spacing=0):
+    return (f'<text x="{x}" y="{y}" font-family="{MONO if mono else FONT}" '
+            f'font-size="{size}" font-weight="{weight}" fill="{fill}" '
+            f'letter-spacing="{spacing}">{escape(value)}</text>')
 
 
-def icon(kind, x, y, color, scale=1):
-    paths = {
-        'documents': '<path d="M-14-13h23v31h-23zM-8-19h23v31M-8-4H3M-8 3H3M-8 10H0"/>',
-        'search': '<circle cx="-3" cy="-3" r="12"/><path d="m6 6 12 12M-3-8v10M-8-3H2"/>',
-        'answer': '<path d="M-18-15h36v25H-6l-8 7v-7h-4zM-10-6H10M-10 1H3"/>',
-        'branch': '<circle cx="-9" cy="-13" r="4"/><circle cx="12" cy="-10" r="4"/><circle cx="-9" cy="14" r="4"/><path d="M-9-9v19M12-6v1C12 4-9 0-9 9"/>',
-        'shield': '<path d="M0-19 16-13v13c0 10-9 17-16 21C-7 17-16 10-16 0v-13zM-8 0l6 6L9-7"/>',
-        'release': '<path d="m0-18 18 10v21L0 23l-18-10V-8zM-18-8 0 2l18-10M0 2v21M-9-13 9-3v8"/>',
-        'trace': '<path d="M-21 11h8V-9h13V3h12V-16h9"/><circle cx="-21" cy="11" r="2"/><circle cx="21" cy="-16" r="2"/>',
-        'evaluate': '<path d="M-18-11h36M-18 2h36M-18 15h36"/><circle cx="-5" cy="-11" r="4"/><circle cx="9" cy="2" r="4"/><circle cx="-10" cy="15" r="4"/>',
-        'improve': '<path d="M15-7A17 17 0 1 0 16 8M6-7h11V-18M-7 1l5 5 9-11"/>',
-        'cloud': '<path d="M-14 14h28a10 10 0 0 0 3-20A17 17 0 0 0-16-3a9 9 0 0 0 2 17z"/>',
-        'edge': '<path d="M-14-16h28v32h-28zM-7-8H7M-7 0H7M-7 8H2M-23 0h9M14 0h9"/>',
-        'lab': '<path d="m-20-2 20-17 20 17M-14-6v25h28V-6M-5 19V6H5v13"/>',
-        'code': '<path d="m-10-13-12 13 12 13m20-26 12 13-12 13M5-20-5 20"/>',
-        'share-code': '<rect x="-16" y="-18" width="32" height="36" rx="5"/><path d="M-8-8h3m10 0h3M-8 1h3m10 0h3M-8 10h3m10 0h3"/>',
-        'upload': '<path d="M0 9v-27m-9 9 9-9 9 9M-18 5v14h36V5"/>',
-        'download': '<path d="M0-18V9m-9-9 9 9 9-9M-18 5v14h36V5"/>',
-    }
-    return f'<g transform="translate({x} {y}) scale({scale})" fill="none" stroke="{color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{paths[kind]}</g>'
+def rect(x, y, w, h, fill, stroke=None, radius=0):
+    return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{radius}" fill="{fill}"' +
+            (f' stroke="{stroke}"' if stroke else '') + '/>')
 
 
-def svg(width, height, title, desc, body):
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">
-<title id="title">{escape(title)}</title>
-<desc id="desc">{escape(desc)}</desc>
-{body}
-</svg>
-'''
+def rule(x, y, w, color=LINE):
+    return f'<path d="M{x} {y}h{w}" stroke="{color}"/>'
 
 
-FOCUS = [
-    ('01', 'AI & RAG Platforms', 'Knowledge in. Useful answers out.', 'gold',
-     ['documents', 'search', 'answer'], ['Documents', 'Retrieval', 'Answers'], 'Bedrock · Dify · OpenSearch'),
-    ('02', 'CI/CD & DevSecOps', 'A repeatable path from code to release.', 'blue',
-     ['branch', 'shield', 'release'], ['Commit', 'Scan & sign', 'Release'], 'GitHub Actions · Docker · Cosign'),
-    ('03', 'Evaluation & Observability', 'See what happened. Find what to improve.', 'violet',
-     ['trace', 'evaluate', 'improve'], ['Trace', 'Evaluate', 'Improve'], 'Langfuse · Datadog · Terraform'),
-    ('04', 'Cloud & Edge Platforms', 'Connect services. Keep boundaries clear.', 'teal',
-     ['cloud', 'edge', 'lab'], ['Cloud', 'Edge', 'Private lab'], 'AWS · Azure · GCP · Cloudflare'),
-]
+def arrow(x, y, size=28, color=INK):
+    return (f'<path d="M{x} {y+size}l{size}-{size}m-{size} 0h{size}v{size}" '
+            f'fill="none" stroke="{color}" stroke-width="3"/>')
 
 
-def focus_card(item, x, y, p):
-    number, title, caption, hue, symbols, labels, tools = item
-    color = p[hue]
-    parts = [f'<g transform="translate({x} {y})">',
-             f'<rect x="1" y="1" width="586" height="346" rx="12" fill="{p["bg"]}" stroke="{p["border"]}"/>',
-             text(30, 46, number, 16, color, mono=True),
-             text(72, 46, title, 27, p['text'], 600)]
-    if number == '01':
-        parts += [text(30, 108, '43% → 65%', 38, color, 600),
-                  text(263, 104, 'search success', 21, p['muted'])]
-    elif number == '02':
-        parts += [text(30, 108, '~60%', 38, color, 600),
-                  text(158, 104, 'less time to deploy', 21, p['muted'])]
+def star(x, y, size, color):
+    paths = ''.join(f'<path d="M0 -{size}V{size}" transform="rotate({a})"/>' for a in [0, 45, 90, 135])
+    return f'<g transform="translate({x} {y})" stroke="{color}" stroke-width="7">{paths}</g>'
+
+
+def svg(w, h, title, description, body):
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" '
+            f'role="img" aria-labelledby="title desc">\n<title id="title">{escape(title)}</title>\n'
+            f'<desc id="desc">{escape(description)}</desc>\n' + '\n'.join(body) + '\n</svg>\n')
+
+
+def cover(mobile):
+    w, h = (640, 488) if mobile else (1200, 406)
+    pad = 36 if mobile else 48
+    body = [rect(1, 1, w-2, h-2, PAPER, LINE, 4), text(pad, 66, 'H.mz', 42, weight=800, spacing=-2), rect(pad+114, 53, 9, 9, PURPLE)]
+    if mobile:
+        body += [text(pad, 106, 'AKIRA / AI PLATFORM ENGINEER', 23, MUTED, mono=True), star(568, 61, 22, INK),
+                 rule(pad, 133, w-pad*2), text(pad-2, 220, 'Build things.', 66, weight=800, spacing=-3),
+                 rect(pad-2, 240, 570, 78, LIME), text(pad-2, 302, 'Make them work.', 66, weight=800, spacing=-3),
+                 text(pad, 366, 'AI systems. Useful tools.', 27), text(pad, 405, 'And a little life outside the terminal.', 25),
+                 rule(pad, 435, w-pad*2), text(pad, 465, 'CODE / CAMERA / CURIOSITY', 17, MUTED, mono=True)]
     else:
-        parts += [text(30, 89, caption, 21, p['muted'])]
-    centers = [88, 294, 500]
-    for a, b in zip(centers, centers[1:]):
-        parts += [f'<path d="M{a+34} 176H{b-37}" stroke="{color}" stroke-width="1.6" fill="none"/>',
-                  f'<path d="m{b-43} 171 6 5-6 5" stroke="{color}" stroke-width="1.6" fill="none"/>']
-    for cx, symbol, label in zip(centers, symbols, labels):
-        parts += [f'<rect x="{cx-35}" y="141" width="70" height="70" rx="18" fill="{color}" fill-opacity=".09" stroke="{color}" stroke-opacity=".45"/>',
-                  icon(symbol, cx, 176, color), text(cx, 246, label, 21, p['text'], 500, anchor='middle')]
-    parts += [f'<path d="M30 281H558" stroke="{p["rule"]}"/>',
-              text(30, 318, tools, 20, p['muted']), '</g>']
-    return '\n'.join(parts)
+        body += [text(244, 59, 'AKIRA / AI PLATFORM ENGINEER', 19, MUTED, mono=True),
+                 text(996, 59, 'BASED IN JAPAN', 17, MUTED, mono=True), rule(pad, 92, 1104),
+                 text(44, 188, 'Build things.', 86, weight=800, spacing=-4), rect(44, 214, 741, 91, LIME),
+                 text(44, 285, 'Make them work.', 86, weight=800, spacing=-4), '<g transform="rotate(7 1003 208)">',
+                 rect(903, 127, 208, 179, INK), rect(895, 119, 208, 179, PURPLE, INK),
+                 text(919, 169, 'CODE', 31, weight=700), text(919, 215, 'CAMERA', 31, weight=700),
+                 text(919, 261, 'CURIOSITY', 25, weight=700), '</g>', rule(pad, 339, 1104),
+                 text(pad, 375, 'AI systems. Useful tools. A little life outside the terminal.', 23), star(1122, 369, 15, INK)]
+    return svg(w, h, 'H.mz — Akira, AI Platform Engineer in Japan', 'Build things. Make them work. Code, camera and curiosity.', body)
 
 
-def focus(theme, mobile):
-    p = THEMES[theme]
-    locations = [(0, i * 364) for i in range(4)] if mobile else [(0, 0), (612, 0), (0, 372), (612, 372)]
-    body = '\n'.join(focus_card(item, *loc, p) for item, loc in zip(FOCUS, locations))
-    return svg(588 if mobile else 1200, 1440 if mobile else 720,
-               'Focus areas — what I build and run',
-               'RAG search success improved from 43% to 65%. Deployment time reduced by about 60%. RAG: documents to retrieval to answers. Delivery: commit, scan and sign, release. Observability: trace, evaluate, improve. Infrastructure: cloud, edge and private lab.', body)
+def entry(kind, mobile):
+    work = kind == 'work'
+    w, h = (640, 326) if mobile else (1200, 202)
+    bg, fg, muted = (NIGHT, PAPER, '#c0c6b5') if work else (PAPER, INK, MUTED)
+    pad = 36 if mobile else 48
+    kicker = '01 / ENGINEERING' if work else '02 / FIELD NOTES'
+    title = 'The work, in detail.' if work else 'Beyond the terminal.'
+    domain = 'workhmz.github.io/workHMZ' if work else 'profile.mingzhe.uk'
+    caption = 'Projects, systems & engineering expertise.' if work else 'Photos, everyday life & a personal lab.'
+    body = [rect(1, 1, w-2, h-2, bg, '#4b5145' if work else LINE, 4),
+            text(pad, 43, kicker, 17, LIME if work else MUTED, mono=True, spacing=1)]
+    if mobile:
+        body += [text(pad-1, 106, title, 43, fg, 700, spacing=-1.5), text(pad, 151, 'Projects, systems &' if work else 'Photos, everyday life', 28, muted),
+                 text(pad, 189, 'engineering expertise.' if work else 'and a personal lab.', 28, muted),
+                 rule(pad, 230, w-pad*2, '#4b5145' if work else LINE), text(pad, 282, domain, 23, muted, mono=True),
+                 arrow(567, 257, 28, LIME if work else INK)]
+    else:
+        body += [text(pad-2, 101, title, 48, fg, 700, spacing=-1.5), text(pad, 145, caption, 24, muted),
+                 text(806 if work else 870, 173, domain, 18, muted, mono=True)]
+        if work:
+            body += [rect(1063, 39, 90, 90, LIME), arrow(1093, 69, 30)]
+        else:
+            body += ['<g transform="rotate(-6 1095 78)">', rect(1056, 31, 98, 100, INK),
+                     rect(1050, 25, 98, 100, LIME, INK), text(1067, 99, 'H*', 57, INK, 800), '</g>']
+    return svg(w, h, title, f'{kicker}. {caption} Visit {domain}.', body)
 
 
 PROJECTS = {
-    'vertex': ('Vertex2OpenAI', 'OpenAI clients → Vertex AI Gemini', 'code', 'gold'),
-    'delivery': ('RAG Delivery Lab', 'Build → Scan → Sign → Deploy', 'shield', 'blue'),
-    'r2filebox': ('R2FileBox', 'Upload → Share code → Download', 'release', 'teal'),
+    'vertex': dict(number='01', title='Vertex2OpenAI', category='AI / API COMPATIBILITY', accent=LIME,
+                   lines=['Use Gemini from the tools', 'you already work with.'],
+                   detail='Streaming, tool calls & credential rotation.', stack='TypeScript / Cloudflare Workers'),
+    'rag': dict(number='02', title='RAG Delivery Lab', category='AI / RETRIEVAL & DELIVERY', accent=PURPLE,
+                lines=['A RAG service, from search', 'to a repeatable release.'],
+                detail='Local embeddings, hybrid search & citations.', stack='Python / Azure AI Search / Container Apps'),
+    'filebox': dict(number='03', title='R2FileBox', category='PRODUCT / FILE SHARING', accent='#9bc8ba',
+                    lines=['A file. A pickup code.', 'A simpler way to share.'],
+                    detail='Resumable uploads. Expiring shares.', stack='Vue / Workers / R2 / D1'),
 }
 
 
-def project(key, theme, mobile):
-    title, caption, symbol, hue = PROJECTS[key]
-    p = THEMES[theme]
-    color = p[hue]
-    width, height = (588, 220) if mobile else (1200, 188)
-    body = [f'<rect x="1" y="1" width="{width-2}" height="{height-2}" rx="12" fill="{p["bg"]}" stroke="{p["border"]}"/>']
-    if mobile:
-        body += [icon(symbol, 47, 45, color, .7), text(82, 50, 'OPEN SOURCE', 16, p['muted'], mono=True, spacing=1),
-                 text(30, 114, title, 37, p['text'], 600), text(30, 161, caption, 24, p['muted'])]
+def project_detail(key, x, y, w, h):
+    """Show implementation contracts, never fabricated application screenshots."""
+    accent = PROJECTS[key]['accent']
+    body = [f'<g transform="translate({x} {y})">', rect(0, 0, w, h, NIGHT, radius=3)]
+    if key == 'vertex':
+        body += [text(24, 34, 'ONE COMPATIBILITY LAYER', 15, accent, mono=True, spacing=.5), rule(24, 52, w-48, '#4b5145'),
+                 text(24, 86, '/v1/chat/completions', 23, PAPER, mono=True), text(24, 121, '/v1/responses', 23, PAPER, mono=True),
+                 '<path d="M34 143v26m-6-6 6 6 6-6" fill="none" stroke="#dafa78" stroke-width="2"/>',
+                 text(58, 166, 'Vertex AI / Gemini', 22, LIME, 600), text(24, 210, 'Existing clients. A different backend.', 16, '#c0c6b5')]
+    elif key == 'rag':
+        body += [text(24, 34, 'RETRIEVAL + RELEASE', 15, PURPLE, mono=True, spacing=.5), rule(24, 52, w-48, '#4b5145')]
+        for i, (label, value) in enumerate([('EMBED', 'ONNX / multilingual'), ('SEARCH', 'Hybrid + semantic ranking'),
+                                           ('ANSWER', 'Structured output + citations'), ('SHIP', 'Canary + rollback')]):
+            yy = 83 + i*40
+            body += [text(24, yy, label, 15, PURPLE, mono=True), text(121, yy, value, 18, PAPER)]
     else:
-        body += [f'<rect x="32" y="46" width="88" height="88" rx="22" fill="{color}" fill-opacity=".09"/>',
-                 icon(symbol, 76, 90, color, 1.3), text(152, 51, 'OPEN SOURCE', 14, p['muted'], mono=True, spacing=2),
-                 text(150, 98, title, 39, p['text'], 600), text(152, 139, caption, 24, p['muted'])]
-        if key == 'vertex':
-            for bx, label in [(758, '/v1'), (944, 'Gemini')]:
-                body += [f'<rect x="{bx}" y="66" width="133" height="54" rx="8" fill="none" stroke="{color}" stroke-opacity=".65"/>',
-                         text(bx+66, 100, label, 22, color, 500, anchor='middle', mono=True)]
-            body += [f'<path d="M900 93H934m-7-5 7 5-7 5" stroke="{color}" stroke-width="1.5" fill="none"/>']
-        elif key == 'delivery':
-            body += [f'<path d="M807 93H864M929 93H986" stroke="{color}" stroke-width="1.5" fill="none"/>',
-                     icon('branch', 780, 93, color, 1.1), icon('shield', 897, 93, color, 1.1), icon('release', 1017, 93, color, 1.1)]
-        else:
-            body += [f'<path d="M807 93H864M929 93H986" stroke="{color}" stroke-width="1.5" fill="none"/>',
-                     icon('upload', 780, 93, color, 1.1), icon('share-code', 897, 93, color, 1.1), icon('download', 1017, 93, color, 1.1)]
-    ax, ay = (536, 47) if mobile else (1143, 93)
-    body += [f'<circle cx="{ax}" cy="{ay}" r="23" fill="{color}" fill-opacity=".12"/>',
-             f'<path d="M{ax-8} {ay+8}l16-16m-16 0h16v16" fill="none" stroke="{color}" stroke-width="1.8"/>']
-    return svg(width, height, title, caption + '. View the project on GitHub.', '\n'.join(body))
+        body += [text(24, 34, 'SMALL INTERFACE. REAL ENGINEERING.', 15, accent, mono=True), rule(24, 52, w-48, '#4b5145'),
+                 text(24, 89, 'UPLOAD', 15, '#c0c6b5', mono=True), text(152, 91, 'Resume interrupted transfers', 19, PAPER),
+                 text(24, 132, 'SHARE', 15, '#c0c6b5', mono=True), text(152, 134, 'A code, link or QR', 19, PAPER),
+                 text(24, 175, 'STORE', 15, '#c0c6b5', mono=True), text(152, 177, 'Deduplicate the content', 19, PAPER),
+                 text(24, 215, 'Independent shares. Automatic expiry.', 16, accent)]
+    return body + ['</g>']
+
+
+def project(key, mobile):
+    p = PROJECTS[key]
+    w, h = (640, 360) if mobile else (1200, 338)
+    pad = 36 if mobile else 48
+    body = [rect(1, 1, w-2, h-2, PAPER, LINE, 4), rect(1, 1, 6, h-2, p['accent']),
+            text(pad, 42, f'{p["number"]} / {p["category"]}', 16, MUTED, mono=True, spacing=.3),
+            text(pad-2, 97, p['title'], 42 if mobile else 44, INK, 700, spacing=-1.6), arrow(w-66, 23, 22)]
+    if mobile:
+        body += [text(pad, 141, p['lines'][0], 30), text(pad, 182, p['lines'][1], 30), text(pad, 225, p['detail'], 25, MUTED)]
+        body += [rule(pad, 253, w-pad*2)]
+        body += [text(pad, 290, p['stack'], 23, MUTED), text(pad, 330, 'EXPLORE THE REPOSITORY', 23, INK, 700, mono=True)]
+    else:
+        body += [text(pad, 145, p['lines'][0], 27), text(pad, 181, p['lines'][1], 27), text(pad, 221, p['detail'], 20, MUTED),
+                 text(pad, 270, p['stack'], 18, MUTED), text(pad, 307, 'EXPLORE THE REPOSITORY', 16, INK, 700, mono=True)]
+        body += project_detail(key, 651, 67, 501, 238)
+    return svg(w, h, p['title'], ' '.join(p['lines'])+' '+p['detail']+' View the source on GitHub.', body)
+
+
+def outputs():
+    files = {}
+    for mobile in [False, True]:
+        suffix = '-mobile' if mobile else ''
+        files[f'cover{suffix}.svg'] = cover(mobile)
+        for kind in ['work', 'life']:
+            files[f'entry-{kind}{suffix}.svg'] = entry(kind, mobile)
+        for key in PROJECTS:
+            files[f'project-{key}{suffix}.svg'] = project(key, mobile)
+    return files
 
 
 if __name__ == '__main__':
     ASSETS.mkdir(parents=True, exist_ok=True)
-    for theme in THEMES:
-        for mobile in [False, True]:
-            suffix = f'{theme}{"-mobile" if mobile else ""}'
-            (ASSETS / f'focus-{suffix}.svg').write_text(focus(theme, mobile))
-            for key in PROJECTS:
-                (ASSETS / f'project-{key}-{suffix}.svg').write_text(project(key, theme, mobile))
-    print(f'Generated {(1 + len(PROJECTS)) * len(THEMES) * 2} SVGs: light/dark and desktop/mobile capability and project cards.')
+    for name, contents in outputs().items():
+        (ASSETS / name).write_text(contents, encoding='utf-8')
+    print('Generated 12 SVGs: desktop and mobile, one shared visual system.')

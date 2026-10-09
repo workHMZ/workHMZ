@@ -17,7 +17,8 @@ window.PORTFOLIO_I18N = {
       themeToLight: 'Switch to light theme',
       menuOpen: 'Open menu',
       menuClose: 'Close menu',
-      langSwitch: 'Switch language to Japanese'
+      langSwitch: 'Switch language to Japanese',
+      protectedNodes: '{count} protected · not probed'
     }
   },
 
@@ -34,10 +35,12 @@ window.PORTFOLIO_I18N = {
       themeToLight: 'ライトテーマに切り替え',
       menuOpen: 'メニューを開く',
       menuClose: 'メニューを閉じる',
-      langSwitch: 'Switch language to English'
+      langSwitch: 'Switch language to English',
+      protectedNodes: '{count}件はアクセス保護のため未計測'
     },
     text: {
-      'nav.home': 'ホーム',
+      'nav.home': 'ワーク',
+      'nav.projects': 'プロジェクト',
       'nav.capabilities': '専門領域',
       'nav.systems': 'システム',
       'nav.record': '実績',
@@ -46,7 +49,7 @@ window.PORTFOLIO_I18N = {
       'hero.hi': 'こんにちは、',
       'hero.suffix': 'です',
       'hero.sr': 'AI Platform エンジニア。RAG・LLMOps、LLM の評価とガードレール、CI/CD と可観測性。',
-      'hero.desc': '生成AIを、本番で信頼できるものに。RAG・評価・ガードレールと、それを支える CI/CD・可観測性をつくっています。',
+      'hero.desc': 'AI システムと、それを届ける仕組みをつくっています。検索、API 連携、自動チェック、デプロイ。役立つ試作から、自分で運用できる形まで。',
       'impact.rag': 'RAG 検索成功率',
       'impact.e2e': 'E2E ケースを単独で自動化',
       'impact.cicd': 'デプロイ時間',
@@ -54,13 +57,28 @@ window.PORTFOLIO_I18N = {
 
       'hero.cta.systems': 'システムを見る',
       'hero.cta.record': '実績を見る',
+      'hero.cta.projects': 'プロジェクト',
+      'hero.cta.expertise': 'できること',
       'profile.cta': 'パーソナルサイト',
-      'console.cadence': 'ブラウザから計測',
+      'console.cadence': 'ブラウザから観測',
 
-      'cap.title': '構築して、運用する',
-      'cap.desc': '軸足は AI 基盤。それを動かし続けるデリバリー・クラウド・可観測性まで。',
+      'projects.title': '細部から、動く仕組みへ。',
+      'projects.desc': '設計の判断も、例外処理も、コードに残しています。3つのオープンソースプロジェクトから、つくり方を紹介します。',
+      'projects.source': 'ソースコードを見る',
+      'projects.vertex.summary': '使い慣れた API から、Vertex AI Gemini へ。',
+      'projects.vertex.body': 'Chat Completions と Responses に対応する OpenAI 互換ゲートウェイ。リクエスト転送だけでなく、認証情報のローテーション、ストリーミング中のエラー、ツール呼び出し、JSON Schema の扱いまで定義しています。',
+      'projects.vertex.focus': '設計の焦点：正常系と異常系を含めた、API 境界の互換性。',
+      'projects.rag.summary': '検索クエリから、段階的なリリースまで。',
+      'projects.rag.body': '多言語 ONNX 埋め込み、Azure AI Search のハイブリッド・セマンティック検索、構造化出力を組み合わせた RAG ラボ。署名付きイメージ、SBOM、カナリアリリース、ロールバックまで、アプリケーションとデリバリーをつないでいます。',
+      'projects.rag.focus': '設計の焦点：検索品質とリリースの仕組みを、ひとつのシステムとして扱う。',
+      'projects.filebox.summary': '接続が途切れても、再開できるファイル共有。',
+      'projects.filebox.body': '8 MiB 単位の再開可能なアップロード、受け取りセッションの計数、コンテンツの重複排除。クリーンアップも再試行可能にし、途中で失敗してもメタデータとオブジェクトの整合性を回復できる設計です。',
+      'projects.filebox.focus': '設計の焦点：転送の再開、状態の整合性、やり直せるクリーンアップ。',
+
+      'cap.title': 'できること',
+      'cap.desc': '検索の課題、API の連携、リリース作業の改善。アプリケーションから、必要な基盤と検証までつないで考えます。',
       'cap.ai.title': 'AI 基盤・RAG・LLMOps',
-      'cap.ai.body': '検索こそがプロダクト。トレースで磨き、AI の誤判定はガードレールで止める。',
+      'cap.ai.body': '実際のトレースから検索を改善し、スキーマと成果物のチェックでモデル出力を検証。役立つ回答と、確認できる根拠を目指します。',
       'pipe.ingest': '取り込み',
       'pipe.chunk': 'チャンク',
       'pipe.retrieve': '検索',
@@ -69,14 +87,14 @@ window.PORTFOLIO_I18N = {
       'pipe.guard': 'ガード',
 
       'cap.delivery.title': 'CI/CD・DevSecOps',
-      'cap.delivery.body': 'チームで再利用できる共通パイプライン。並列化で速く、署名とスキャンで安全に。',
+      'cap.delivery.body': '再利用できるリリースフロー、並列化とキャッシュ、スキャンと成果物への署名。繰り返す手作業を、チームが維持できる仕組みに変えます。',
       'cap.cloud.title': 'クラウド・エッジ',
-      'cap.cloud.body': '公開はエッジ、プライベートは自宅と3つのクラウド。入口はゼロトラストに集約。',
+      'cap.cloud.body': '公開アプリケーションはエッジへ、プライベートなツールにはアクセス制御を。クラウド、ネットワーク、自宅基盤の境界を整理して構築します。',
       'cap.obs.title': '可観測性・品質',
-      'cap.obs.body': 'GKE の監視は IaC で、LLM は LangFuse でトレース。証明できない「成功」は出さない。',
+      'cap.obs.body': 'Datadog の監視をコードで管理し、LLM は LangFuse でトレース。自動チェックとその根拠をつなぎ、失敗や運用中の信号から次の改善を決めます。',
 
       'sys.title': 'リポジトリから、稼働中のサービスまで',
-      'sys.desc': 'つくったものが、いま動いている。ステータスはブラウザから計測しています。',
+      'sys.desc': '運用の一断面。公開エンドポイントはブラウザから計測し、保護されたサービスは別表示にしています。未計測のサービスの正常性は推測しません。',
       'sys.ai.desc': 'Vertex AI Gemini を OpenAI 互換で使える Workers 製プロキシ。ストリーミングとキーローテーションに対応。',
       'sys.ai.run': 'プロキシ経由のプライベートチャット',
       'sys.delivery.desc': 'CI だけで動く鉄道遅延モニター。定期実行・Pages 公開・チャット通知。',
@@ -84,11 +102,12 @@ window.PORTFOLIO_I18N = {
       'sys.cloud.desc': 'Workers・R2・D1 で動く、レジューム対応のファイル共有。',
       'sys.cloud.run': '計測ごとにヘルスチェック',
       'sys.open': '開く',
+      'sys.private': 'プライベート環境',
       'platform.title': 'ハイブリッド自宅基盤',
-      'platform.desc': '20以上のサービスを自宅・NAS・3つのクラウドに分散し、ひとつのエッジに集約。',
+      'platform.desc': '自宅基盤、NAS、クラウドサービス。公開アプリケーションと個人用ツールのアクセス方針を分けて運用しています。',
 
       'rec.title': '本番で届けてきたもの',
-      'rec.desc': '直近の3案件。顧客名は伏せ、数字はそのまま。',
+      'rec.desc': 'これまでの業務から。顧客情報は伏せ、担当範囲と実際に確認した成果を紹介します。',
       'rec.current': '進行中',
       'rec.solo': '1名',
       'rec.team4': '4名',
@@ -117,7 +136,7 @@ window.PORTFOLIO_I18N = {
       'lang.en': '英語',
       'lang.en.level': '技術文書・日常会話',
 
-      'footer.text': '© 2026 Akira. このページのステータスは、すべてブラウザから計測しています。'
+      'footer.text': '© 2026 Akira. つくる、確かめる、運用する。公開コードはこのページに、日々の記録は Field Notes に。'
     }
   }
 };

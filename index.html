@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Akira | AI Platform Engineer - RAG, LLMOps, DevOps</title>
-  <meta name="description" content="Akira - AI Platform Engineer in Japan. RAG pipelines, LLM tracing and evaluation, AI guardrails, and the CI/CD and observability underneath, with live systems probed from your browser.">
+  <meta name="description" content="Akira — AI Platform Engineer in Japan. Selected open-source projects, RAG and LLM integration, delivery automation, and the engineering work behind running services.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f6f4f0" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0c0b0a" media="(prefers-color-scheme: dark)">
@@ -16,18 +16,18 @@
 
   <!-- Social cards: the portfolio's main job is surviving a paste into Slack / LinkedIn / DMs. -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="mingzhe.uk">
+  <meta property="og:site_name" content="H.mz — Engineering">
   <meta property="og:url" content="https://workhmz.github.io/workHMZ/">
   <meta property="og:title" content="Akira - AI Platform Engineer">
-  <meta property="og:description" content="AI Platform Engineer in Japan. RAG search success 43% to 65%, ~5,500 AI-assisted E2E cases automated solo, 60% faster deployments, and live systems probed from your browser.">
+  <meta property="og:description" content="RAG, LLM integration and delivery automation. Explore the projects, implementation decisions and production experience behind the work.">
   <!-- og-card.png is rendered from og-card.html; re-render it if either changes. -->
   <meta property="og:image" content="https://workhmz.github.io/workHMZ/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Akira - AI Platform Engineer, mingzhe.uk">
+  <meta property="og:image:alt" content="H.mz — Engineering. Akira, AI Platform Engineer. Selected open-source projects.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Akira - AI Platform Engineer">
-  <meta name="twitter:description" content="RAG and LLMOps, LLM evaluation and guardrails, CI/CD and observability, with live systems probed from your browser.">
+  <meta name="twitter:description" content="Selected open-source projects, RAG and LLM integration, delivery automation, and production experience.">
   <meta name="twitter:image" content="https://workhmz.github.io/workHMZ/og-card.png">
 
   <!-- Resolve theme and language before first paint to avoid a Safari flash. -->
@@ -73,7 +73,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
   </noscript>
-  <link rel="stylesheet" href="style.css?v=20261007-3">
+  <link rel="stylesheet" href="style.css?v=20261009-3">
 </head>
 <body>
   <div class="ambient-layer" aria-hidden="true">
@@ -91,15 +91,15 @@
 
   <nav class="navbar" id="navbar" aria-label="Primary">
     <div class="container navbar-container">
-      <a href="#home" class="nav-logo" aria-label="mingzhe.uk home">
-        <i class="ri-terminal-box-line"></i> mingzhe<span>.uk</span>
+      <a href="#home" class="nav-logo" aria-label="H.mz Engineering home">
+        H.mz<span class="nav-edition">Engineering</span>
       </a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#home" class="active" aria-current="location" data-i18n="nav.home">Home</a></li>
-        <li><a href="#capabilities" data-i18n="nav.capabilities">Capabilities</a></li>
+        <li><a href="#home" class="active" aria-current="location" data-i18n="nav.home">Work</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#capabilities" data-i18n="nav.capabilities">Expertise</a></li>
         <li><a href="#systems" data-i18n="nav.systems">Systems</a></li>
         <li><a href="#record" data-i18n="nav.record">Track Record</a></li>
-        <li><a href="#credentials" data-i18n="nav.credentials">Credentials</a></li>
         <li class="nav-utilities">
           <div class="utility-capsule" aria-label="Display controls">
             <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language to Japanese">
@@ -128,13 +128,13 @@
     <header id="home" class="hero">
       <div class="container hero-layout">
         <div class="hero-content">
-          <div class="hero-subtitle"><span class="status-indicator" aria-hidden="true"></span><span>AI Platform Engineer · LLMOps · DevOps</span></div>
+          <div class="hero-subtitle"><span class="hero-edition">Engineering portfolio</span><span class="hero-location">Japan</span></div>
           <h1 class="hero-title"><span data-i18n="hero.hi">Hi, I'm </span><span class="gradient-text">Akira</span><span data-i18n="hero.suffix"></span></h1>
           <div class="hero-headline">
             <span class="sr-only" data-i18n="hero.sr">AI Platform Engineer. RAG and LLMOps. LLM evaluation and guardrails. CI/CD and observability.</span>
             <span aria-hidden="true"><span id="typed-text"></span><span class="typed-cursor">|</span></span>
           </div>
-          <p class="hero-description" data-i18n="hero.desc">AI Platform Engineer in Japan. I make generative AI dependable in production: RAG, evaluation and guardrails, on top of solid CI/CD and observability.</p>
+          <p class="hero-description" data-i18n="hero.desc">I build AI systems and the delivery paths around them. Retrieval, API integration, automated checks and deployment — from the first useful prototype to something I can operate.</p>
 
           <div class="impact-strip" aria-label="Career impact highlights">
             <a class="impact-item route-ai" href="#rec-rag"><strong>43→65%</strong><span data-i18n="impact.rag">RAG search success</span></a>
@@ -144,8 +144,8 @@
           </div>
 
           <div class="hero-actions">
-            <a href="#systems" class="btn btn-primary" data-i18n="hero.cta.systems">Explore systems</a>
-            <a href="#record" class="btn btn-secondary" data-i18n="hero.cta.record">Track record</a>
+            <a href="#projects" class="btn btn-primary" data-i18n="hero.cta.projects">Explore selected work</a>
+            <a href="#capabilities" class="btn btn-secondary" data-i18n="hero.cta.expertise">Where I can help</a>
             <div class="social-links">
               <a href="https://github.com/workHMZ" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub" title="GitHub"><i class="ri-github-fill" aria-hidden="true"></i></a>
               <a href="https://profile.mingzhe.uk/" target="_blank" rel="noopener noreferrer" class="social-icon social-icon-profile" title="Personal site"><i class="ri-global-line" aria-hidden="true"></i><span class="sr-only" data-i18n="profile.cta">Personal site</span></a>
@@ -167,7 +167,7 @@
           </div>
 
           <div class="console-summary">
-            <div><span>NODES</span><strong id="console-node-count">-- / --</strong></div>
+            <div><span title="Healthy nodes / monitored targets">HEALTHY</span><strong id="console-node-count">-- / --</strong></div>
             <div><span>AVG RTT</span><strong id="console-rtt">-- ms</strong></div>
             <div><span>SAMPLED</span><strong id="console-sampled">--</strong></div>
           </div>
@@ -178,16 +178,70 @@
             <div class="console-node route-cloud" data-node="cloud"><span class="telemetry-ping probing"></span><span class="console-node-name">FileBox</span><span class="console-node-meta">Workers</span><strong class="latency-display">--</strong></div>
             <div class="console-node route-platform" data-node="azure"><span class="telemetry-ping probing"></span><span class="console-node-name">Stirling-PDF</span><span class="console-node-meta">Azure VM</span><strong class="latency-display">--</strong></div>
           </div>
-          <div class="console-foot"><span>mingzhe.uk / telemetry</span><span class="console-clock" data-i18n="console.cadence">probed from your browser</span></div>
+          <div class="console-foot"><span id="console-protected-count">1 protected · not probed</span><span class="console-clock" data-i18n="console.cadence">browser observations</span></div>
         </aside>
       </div>
     </header>
 
+    <section id="projects" class="reveal section-projects">
+      <div class="container">
+        <div class="section-kicker"><span>01</span> Selected work</div>
+        <div class="project-section-head">
+          <h2 class="section-title" data-i18n="projects.title">Small details. Working systems.</h2>
+          <p class="section-desc" data-i18n="projects.desc">Three open-source projects, with the decisions and edge cases left in the code. A closer look at how I build.</p>
+        </div>
+
+        <div class="project-list">
+          <article class="project-case" id="project-vertex">
+            <header class="project-identity">
+              <span class="project-index">01 / API INTEGRATION</span>
+              <h3>Vertex2OpenAI</h3>
+              <p class="project-stack">TypeScript · Cloudflare Workers · Vertex AI</p>
+            </header>
+            <div class="project-detail">
+              <p class="project-summary" data-i18n="projects.vertex.summary">One familiar API for Vertex AI Gemini.</p>
+              <p data-i18n="projects.vertex.body">An OpenAI-compatible gateway for Chat Completions and Responses. The work goes beyond forwarding requests: credential rotation, streaming failures, tool calls and JSON Schema each need an explicit contract.</p>
+              <p class="project-focus" data-i18n="projects.vertex.focus">Engineering focus: compatibility at the boundary, including the failure path.</p>
+              <a class="project-source" href="https://github.com/workHMZ/vertex2openai-cf" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.source">Read the source</span><span aria-hidden="true">↗</span><span class="sr-only"> — Vertex2OpenAI</span></a>
+            </div>
+          </article>
+
+          <article class="project-case" id="project-rag">
+            <header class="project-identity">
+              <span class="project-index">02 / RETRIEVAL &amp; DELIVERY</span>
+              <h3>RAG delivery lab</h3>
+              <p class="project-stack">Python · ONNX · Azure AI Search · ACA</p>
+            </header>
+            <div class="project-detail">
+              <p class="project-summary" data-i18n="projects.rag.summary">From a search query to a controlled release.</p>
+              <p data-i18n="projects.rag.body">Multilingual ONNX embeddings, hybrid and semantic retrieval in Azure AI Search, and structured outputs. The same lab connects the application to container delivery: signed images, SBOMs, canary releases and rollback.</p>
+              <p class="project-focus" data-i18n="projects.rag.focus">Engineering focus: retrieval quality and deployment discipline in one system.</p>
+              <a class="project-source" href="https://github.com/workHMZ/aca-ghcr-cicd-lab" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.source">Read the source</span><span aria-hidden="true">↗</span><span class="sr-only"> — RAG delivery lab</span></a>
+            </div>
+          </article>
+
+          <article class="project-case" id="project-filebox">
+            <header class="project-identity">
+              <span class="project-index">03 / STORAGE &amp; RECOVERY</span>
+              <h3>R2FileBox</h3>
+              <p class="project-stack">Vue · Workers · R2 · D1</p>
+            </header>
+            <div class="project-detail">
+              <p class="project-summary" data-i18n="projects.filebox.summary">File sharing built for interrupted connections.</p>
+              <p data-i18n="projects.filebox.body">Resumable uploads in 8 MiB chunks, pickup-session accounting and content deduplication. Retryable cleanup handles the less visible part of storage: keeping metadata and objects in sync after partial failures.</p>
+              <p class="project-focus" data-i18n="projects.filebox.focus">Engineering focus: resumability, state consistency and recoverable cleanup.</p>
+              <a class="project-source" href="https://github.com/workHMZ/r2filebox" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.source">Read the source</span><span aria-hidden="true">↗</span><span class="sr-only"> — R2FileBox</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="capabilities" class="reveal section-capabilities">
       <div class="container">
-        <div class="section-kicker"><span>01</span> Capabilities</div>
-        <h2 class="section-title" data-i18n="cap.title">What I build and run</h2>
-        <p class="section-desc" data-i18n="cap.desc">AI platforms first, with the delivery, cloud and observability that keep them running.</p>
+        <div class="section-kicker"><span>02</span> Engineering expertise</div>
+        <h2 class="section-title" data-i18n="cap.title">Where I can help</h2>
+        <p class="section-desc" data-i18n="cap.desc">A retrieval problem, an API to integrate, a release process to simplify. I connect application work with the infrastructure and checks it needs.</p>
 
         <div class="capability-grid">
           <article class="glass-card capability-card capability-feature route-card route-ai" id="cap-ai" data-route-card="ai">
@@ -196,7 +250,7 @@
               <div><h3 data-i18n="cap.ai.title">AI Platform · RAG · LLMOps</h3><p class="capability-role">Retrieval · Evaluation · Guardrails</p></div>
               <span class="focus-badge"><i class="ri-focus-3-line"></i>PRIMARY FOCUS</span>
             </div>
-            <p class="capability-lede" data-i18n="cap.ai.body">Retrieval is the product. I tune it from real traces, and fence model output with schemas and hashes so it can never report a false pass.</p>
+            <p class="capability-lede" data-i18n="cap.ai.body">I use real traces to improve retrieval, then validate model outputs with schemas and artifact checks. The aim is a useful answer with evidence that can be inspected.</p>
             <ol class="ai-pipeline" aria-label="RAG and LLMOps pipeline">
                 <li style="--i: 0"><i class="ri-file-text-line"></i><span data-i18n="pipe.ingest">Ingest</span></li>
                 <li style="--i: 1"><i class="ri-scissors-cut-line"></i><span data-i18n="pipe.chunk">Chunk</span></li>
@@ -213,7 +267,7 @@
               <div class="capability-icon route-node route-source" data-route="delivery"><i class="ri-git-branch-line"></i></div>
               <div><h3 data-i18n="cap.delivery.title">CI/CD &amp; DevSecOps</h3><p class="capability-role">Pipelines · Supply chain</p></div>
             </div>
-            <p class="capability-lede" data-i18n="cap.delivery.body">Shared pipelines teams actually reuse: fast through parallelism, trusted through scanning and signing.</p>
+            <p class="capability-lede" data-i18n="cap.delivery.body">Reusable release workflows, parallel jobs and caching, with scanning and signed artifacts. I turn repeated manual steps into a delivery path the team can maintain.</p>
             <div class="tag-row"><span class="tag">GitHub Actions</span><span class="tag">Docker</span><span class="tag">Terraform</span><span class="tag">Helm</span><span class="tag">Trivy</span><span class="tag">Cosign</span></div>
           </article>
 
@@ -222,7 +276,7 @@
               <div class="capability-icon route-node route-source" data-route="cloud"><i class="ri-cloud-line"></i></div>
               <div><h3 data-i18n="cap.cloud.title">Cloud &amp; Edge</h3><p class="capability-role">Multi-cloud · Zero Trust</p></div>
             </div>
-            <p class="capability-lede" data-i18n="cap.cloud.body">Public services on the edge, private ones across a home lab and three clouds, all behind one Zero Trust door.</p>
+            <p class="capability-lede" data-i18n="cap.cloud.body">Public applications at the edge; private tools behind access controls. I work across cloud services, networking and self-hosted infrastructure with clear boundaries between them.</p>
             <div class="tag-row"><span class="tag">AWS</span><span class="tag">Google Cloud</span><span class="tag">Azure</span><span class="tag">Cloudflare</span><span class="tag">Tailscale</span></div>
           </article>
 
@@ -231,7 +285,7 @@
               <div class="capability-icon observability-source" id="observability-source"><i class="ri-pulse-line"></i></div>
               <div><h3 data-i18n="cap.obs.title">Observability &amp; Quality</h3><p class="capability-role">Telemetry · IaC · E2E</p></div>
             </div>
-            <p class="capability-lede" data-i18n="cap.obs.body">Datadog on GKE as code, LLM traces in LangFuse, and fail-closed tests that never show an unproven green.</p>
+            <p class="capability-lede" data-i18n="cap.obs.body">Datadog monitoring as code, LLM traces in LangFuse, and automated checks tied to their evidence. I use failures and runtime signals to decide what to improve next.</p>
             <div class="tag-row"><span class="tag">Datadog</span><span class="tag">LangFuse</span><span class="tag">Sentry</span><span class="tag">Playwright</span></div>
           </article>
         </div>
@@ -240,10 +294,10 @@
 
     <section id="systems" class="reveal section-systems">
       <div class="container">
-        <div class="section-kicker"><span>02</span> Systems</div>
+        <div class="section-kicker"><span>03</span> Systems in operation</div>
         <div class="section-header-block">
           <h2 class="section-title" data-i18n="sys.title">From repository to running service</h2>
-          <p class="section-desc" data-i18n="sys.desc">Built here, running now. Every status below is probed live from your browser.</p>
+          <p class="section-desc" data-i18n="sys.desc">A view of the operating layer. Public endpoints are sampled from your browser; protected services are marked separately and their health is not inferred.</p>
         </div>
 
         <div class="systems-grid">
@@ -265,7 +319,7 @@
                 <span class="run-runtime">Vercel Edge</span>
               </div>
               <svg class="run-spark" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true"><polyline points=""/></svg>
-              <a href="https://lobe.mingzhe.uk" target="_blank" rel="noopener noreferrer" class="run-launch"><span data-i18n="sys.open">Open</span><i class="ri-arrow-right-up-line"></i></a>
+              <span class="run-private" data-i18n="sys.private">Private deployment</span>
             </div>
           </article>
 
@@ -318,7 +372,7 @@
           <div class="platform-intro">
             <span class="layer-label"><i class="ri-stack-line"></i>PLATFORM</span>
             <strong data-i18n="platform.title">Hybrid self-hosted platform</strong>
-            <span data-i18n="platform.desc">20+ services across a home lab, a NAS and three clouds, behind one edge.</span>
+            <span data-i18n="platform.desc">A home lab, NAS and cloud services, with separate access policies for public applications and private tools.</span>
           </div>
           <ul class="platform-items">
             <li><i class="ri-git-merge-line"></i><span>Cloudflare Tunnel</span></li>
@@ -336,10 +390,10 @@
 
     <section id="record" class="reveal section-record">
       <div class="container">
-        <div class="section-kicker"><span>03</span> Track Record</div>
+        <div class="section-kicker"><span>04</span> Track Record</div>
         <div class="section-header-block">
           <h2 class="section-title" data-i18n="rec.title">Shipped in production</h2>
-          <p class="section-desc" data-i18n="rec.desc">The three most recent projects. Clients stay anonymous; the numbers are real.</p>
+          <p class="section-desc" data-i18n="rec.desc">Selected professional work. Client details stay private; the role, scope and observed outcomes stay concrete.</p>
         </div>
 
         <ol class="record-log">
@@ -392,7 +446,7 @@
 
     <section id="credentials" class="reveal section-credentials">
       <div class="container">
-        <div class="section-kicker"><span>04</span> Credentials</div>
+        <div class="section-kicker"><span>05</span> Credentials</div>
         <h2 class="section-title" data-i18n="cred.title">Certifications &amp; languages</h2>
         <div class="credential-layout">
           <article class="glass-card credential-card credential-feature">
@@ -427,16 +481,16 @@
 
   <footer>
     <div class="container footer-container">
-      <div class="footer-logo"><i class="ri-terminal-box-line"></i> mingzhe<span>.uk</span></div>
-      <div class="footer-text" data-i18n="footer.text">© 2026 Akira. Every status on this page is probed live from your browser.</div>
+      <div class="footer-logo">H.mz <span class="footer-edition">/ Engineering</span></div>
+      <div class="footer-text" data-i18n="footer.text">© 2026 Akira. Built, tested, operated. Public code above; life beyond the terminal in Field Notes.</div>
       <div class="footer-links">
         <a href="https://github.com/workHMZ" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub" title="GitHub"><i class="ri-github-fill" aria-hidden="true"></i></a>
-        <a href="https://profile.mingzhe.uk/" target="_blank" rel="noopener noreferrer" class="social-icon social-icon-profile" title="Personal site"><i class="ri-global-line" aria-hidden="true"></i><span class="sr-only" data-i18n="profile.cta">Personal site</span></a>
+        <a href="https://profile.mingzhe.uk/" target="_blank" rel="noopener noreferrer" class="footer-personal">Field Notes <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </footer>
 
-  <script src="i18n.js?v=20261007-1" defer></script>
-  <script src="script.js?v=20260925-1" defer></script>
+  <script src="i18n.js?v=20261009-1" defer></script>
+  <script src="script.js?v=20261009-1" defer></script>
 </body>
 </html>

@@ -332,7 +332,7 @@
    * Wide layouts fly an arc between grid columns; stacked layouts ride the telemetry rail.
    */
   const routingLayer = $('#capability-routing-layer');
-  const sections = ['home', 'capabilities', 'systems', 'record', 'credentials'].map(id => document.getElementById(id)).filter(Boolean);
+  const sections = ['home', 'projects', 'capabilities', 'systems', 'record', 'credentials'].map(id => document.getElementById(id)).filter(Boolean);
   const navItems = $$('#nav-links a[href^="#"]');
   const telemetryControllerState = $('#telemetry-controller-state');
   const observabilitySource = $('#observability-source');
@@ -750,8 +750,8 @@
     unreachable: 'UNREACHABLE',
     probing: 'PROBING'
   };
-  /* shielded is a declared design state, not a fault - it counts as healthy. */
-  const HEALTHY = new Set(['active', 'shielded']);
+  /* Protected nodes are unmeasured; they are neither healthy nor a fault. */
+  const HEALTHY = new Set(['active']);
   const failStreaks = new Map();
   const lastGoodReading = new Map();
   const rttHistory = new Map();
@@ -857,7 +857,11 @@
 
       if (mode === 'health') {
         const payload = await response.json().catch(() => null);
-        if (payload && (payload.success === false || (typeof payload.status === 'string' && payload.status.toUpperCase() !== 'UP'))) {
+        const validPayload = payload !== null && typeof payload === 'object' && !Array.isArray(payload);
+        const healthyPayload = validPayload && (id === 'cloud'
+          ? payload.success === true && payload.code === 200
+          : id === 'azure' && payload.status === 'UP');
+        if (!healthyPayload) {
           failStreaks.set(id, 0);
           lastGoodReading.delete(id);
           paintNode(id, 'degraded', 'ERR');
@@ -897,9 +901,13 @@
   }
 
   function updateHeroConsole(states) {
-    const total = states.length;
-    const pending = states.filter(state => state.status === 'probing').length;
-    const healthy = states.filter(state => HEALTHY.has(state.status)).length;
+    const probeable = states.filter(state => state.status !== 'shielded');
+    const total = probeable.length;
+    const pending = probeable.filter(state => state.status === 'probing').length;
+    const healthy = probeable.filter(state => HEALTHY.has(state.status)).length;
+    const protectedCount = states.length - total;
+    const protectedLabel = $('#console-protected-count');
+    if (protectedLabel) protectedLabel.textContent = t('protectedNodes').replace('{count}', String(protectedCount));
     /* Only nodes we actually timed contribute to RTT; the shielded node has no number. */
     const timed = states.map(state => state.rtt).filter(Number.isFinite);
     const average = timed.length ? timed.reduce((sum, value) => sum + value, 0) / timed.length : NaN;
@@ -907,7 +915,7 @@
     if (consoleRtt) consoleRtt.textContent = Number.isFinite(average) ? `${Math.max(1, Math.round(average))} ms` : '-- ms';
     if (consoleState) {
       /* Nodes not measured yet are a boot state, not a fault. */
-      const state = healthy + pending >= total ? (pending ? 'SAMPLING' : 'NOMINAL') : healthy > 0 ? 'DEGRADED' : 'OFFLINE';
+      const state = !total ? 'STANDBY' : healthy + pending >= total ? (pending ? 'SAMPLING' : 'NOMINAL') : healthy > 0 ? 'DEGRADED' : 'OFFLINE';
       consoleState.textContent = state;
       consoleState.dataset.state = state.toLowerCase();
     }
@@ -1260,6 +1268,7 @@
     applyCopy();
     syncThemeUI(currentTheme());
     syncMenuLabel();
+    commitReadings();
     restartTypewriter(260);
     /* Reflowed copy moves every route endpoint. */
     measureLayoutDebounced();

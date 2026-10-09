@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="488" viewBox="0 0 640 488" role="img" aria-labelledby="title desc">
+<title id="title">H.mz — Akira, AI Platform Engineer in Japan</title>
+<desc id="desc">Build things. Make them work. Code, camera and curiosity.</desc>
+<rect x="1" y="1" width="638" height="486" rx="4" fill="#f3f0e7" stroke="#d2cfc3"/>
+<text x="36" y="66" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="800" fill="#242522" letter-spacing="-2">H.mz</text>
+<rect x="150" y="53" width="9" height="9" rx="0" fill="#b9a4e5"/>
+<text x="36" y="106" font-family="'Courier New', monospace" font-size="23" font-weight="400" fill="#616358" letter-spacing="0">AKIRA / AI PLATFORM ENGINEER</text>
+<g transform="translate(568 61)" stroke="#242522" stroke-width="7"><path d="M0 -22V22" transform="rotate(0)"/><path d="M0 -22V22" transform="rotate(45)"/><path d="M0 -22V22" transform="rotate(90)"/><path d="M0 -22V22" transform="rotate(135)"/></g>
+<path d="M36 133h568" stroke="#d2cfc3"/>
+<text x="34" y="220" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="800" fill="#242522" letter-spacing="-3">Build things.</text>
+<rect x="34" y="240" width="570" height="78" rx="0" fill="#dafa78"/>
+<text x="34" y="302" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="800" fill="#242522" letter-spacing="-3">Make them work.</text>
+<text x="36" y="366" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" fill="#242522" letter-spacing="0">AI systems. Useful tools.</text>
+<text x="36" y="405" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400" fill="#242522" letter-spacing="0">And a little life outside the terminal.</text>
+<path d="M36 435h568" stroke="#d2cfc3"/>
+<text x="36" y="465" font-family="'Courier New', monospace" font-size="17" font-weight="400" fill="#616358" letter-spacing="0">CODE / CAMERA / CURIOSITY</text>
+</svg>

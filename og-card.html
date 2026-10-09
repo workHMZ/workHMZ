@@ -1,49 +1,61 @@
-<!DOCTYPE html><html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1200px;height:630px;overflow:hidden}
-.card{width:1200px;height:630px;position:relative;overflow:hidden}
-body{background:#0c0b0a;font-family:'Space Grotesk',-apple-system,sans-serif;color:#f5f2ee;position:relative}
-.grid{position:absolute;inset:0;background-image:radial-gradient(rgba(232,220,205,.09) 1.4px,transparent 1.4px);background-size:38px 38px;
- -webkit-mask-image:radial-gradient(circle at 50% 42%,#000 40%,transparent 92%)}
-.glow{position:absolute;border-radius:50%}
-.g1{top:-220px;left:-160px;width:760px;height:760px;background:radial-gradient(closest-side,rgba(214,191,159,.16),transparent)}
-.g2{bottom:-300px;right:-200px;width:820px;height:820px;background:radial-gradient(closest-side,rgba(52,211,153,.07),transparent)}
-.rail{position:absolute;top:0;bottom:0;right:42px;width:1px;background:linear-gradient(180deg,transparent,rgba(52,211,153,.35) 20%,rgba(52,211,153,.35) 80%,transparent)}
-.wrap{position:relative;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 84px}
-.logo{display:flex;align-items:center;gap:11px;font-family:'Fira Code',monospace;font-size:28px;font-weight:600;margin-bottom:38px;color:#f5f2ee}
-.logo svg{display:block;flex:0 0 auto}
-.logo .d{color:#34d399}
-.kicker{display:flex;align-items:center;gap:12px;font-family:'Fira Code',monospace;font-size:21px;color:#cfc7bd;margin-bottom:18px}
-.dot{width:10px;height:10px;border-radius:50%;background:#34d399;box-shadow:0 0 0 5px rgba(52,211,153,.14)}
-h1{font-size:84px;font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-bottom:22px}
-h1 .a{color:#d6bf9f}
-.role{font-size:25px;color:#cfc7bd;margin-bottom:42px;letter-spacing:-.005em}
-.metrics{display:flex;gap:14px}
-.m{flex:1;padding:18px 20px;border:1px solid rgba(232,220,205,.1);border-radius:14px;background:rgba(24,22,20,.72)}
-.m b{display:block;font-family:'Fira Code',monospace;font-size:27px;font-weight:600;margin-bottom:6px}
-.m span{display:block;font-size:14px;color:#938a80;line-height:1.3}
-.foot{position:absolute;left:84px;right:84px;bottom:42px;display:flex;justify-content:space-between;align-items:center;
- font-family:'Fira Code',monospace;font-size:16px;color:#938a80}
-.live{display:flex;align-items:center;gap:10px;color:#cfc7bd}
-.live i{width:8px;height:8px;border-radius:50%;background:#34d399}
-</style></head><body><div class="card">
-<div class="grid"></div><div class="glow g1"></div><div class="glow g2"></div><div class="rail"></div>
-<div class="wrap">
-  <div class="logo">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="3.6" width="18.8" height="16.8" rx="2.6"/><path d="M7.4 9.6 L9.9 12.1 L7.4 14.6"/><path d="M12.6 15.1 H16.6"/></svg>
-    <span>mingzhe<span class="d">.uk</span></span>
-  </div>
-  <div class="kicker"><span class="dot"></span>AI Platform Engineer &middot; LLMOps &middot; DevOps</div>
-  <h1>Akira <span class="a">&mdash;</span> AI Platform</h1>
-  <div class="role">RAG pipelines, LLM evaluation and guardrails, with the CI/CD and observability underneath.</div>
-  <div class="metrics">
-    <div class="m"><b>43&rarr;65%</b><span>RAG search success</span></div>
-    <div class="m"><b>5,500</b><span>E2E cases automated, solo</span></div>
-    <div class="m"><b>&minus;60%</b><span>deployment time</span></div>
-    <div class="m"><b>4+ yrs</b><span>development &amp; operations</span></div>
-  </div>
-</div>
-<div class="foot"><span class="live"><i></i>LIVE SYSTEMS &middot; PROBED FROM YOUR BROWSER</span><span>Based in Japan</span></div>
-</div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, initial-scale=1">
+  <title>H.mz — Engineering · Share card</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+    body { background: #f3f0e7; color: #242522; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    .card { width: 1200px; height: 630px; padding: 47px 60px 36px; display: flex; flex-direction: column; }
+    .masthead { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 23px; border-bottom: 1px solid #c5c3ba; }
+    .brand { display: flex; align-items: baseline; gap: 17px; }
+    .brand strong { font-size: 37px; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+    .brand i { width: 10px; height: 10px; background: #b9a4e5; }
+    .brand span { font-size: 17px; font-weight: 500; letter-spacing: -.25px; }
+    .edition, .eyebrow, .case-label, .footer-url { font-family: "SFMono-Regular", Menlo, Consolas, monospace; }
+    .edition { color: #686a61; font-size: 12px; letter-spacing: 1.4px; }
+    .body { display: grid; grid-template-columns: minmax(0, 1fr) 307px; align-items: center; flex: 1; gap: 52px; padding: 35px 0 39px; }
+    .eyebrow { margin-bottom: 19px; color: #686a61; font-size: 12px; letter-spacing: 1.4px; }
+    h1 { font-size: 84px; font-weight: 700; letter-spacing: -4.6px; line-height: .99; }
+    h1 span { position: relative; z-index: 0; display: inline-block; }
+    h1 span::after { content: ""; position: absolute; z-index: -1; height: 18px; left: 2px; right: -7px; bottom: 1px; background: #dafa78; }
+    .description { margin-top: 27px; max-width: 570px; color: #5d6056; font-size: 19px; letter-spacing: -.25px; line-height: 1.5; }
+    .work { padding: 27px 26px 25px; background: #242522; color: #f3f0e7; }
+    .work-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; color: #dafa78; }
+    .case-label { font-size: 10px; letter-spacing: 1.2px; }
+    .work-heading span:last-child { font-size: 24px; line-height: 1; }
+    .case { padding: 17px 0; border-bottom: 1px solid #494b44; }
+    .case:last-child { padding-bottom: 1px; border-bottom: 0; }
+    .case strong { display: block; margin-bottom: 6px; font-size: 19px; font-weight: 500; letter-spacing: -.35px; }
+    .case p { color: #b4b7aa; font-size: 12px; line-height: 1.4; }
+    footer { display: flex; align-items: center; justify-content: space-between; padding-top: 19px; border-top: 1px solid #c5c3ba; }
+    .byline { font-size: 14px; color: #686a61; }
+    .byline strong { margin-right: 11px; color: #242522; font-weight: 600; }
+    .footer-url { color: #686a61; font-size: 11px; letter-spacing: .1px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header class="masthead">
+      <div class="brand"><strong>H.mz</strong><i aria-hidden="true"></i><span>Engineering</span></div>
+      <span class="edition">WORK / JAPAN</span>
+    </header>
+    <div class="body">
+      <section>
+        <p class="eyebrow">FROM RETRIEVAL TO RELEASE</p>
+        <h1>AI systems.<br>Built to <span>run.</span></h1>
+        <p class="description">RAG, API integration and delivery automation.<br>The code, the decisions, the work behind it.</p>
+      </section>
+      <aside class="work" aria-label="Selected open-source projects">
+        <div class="work-heading"><span class="case-label">SELECTED WORK</span><span aria-hidden="true">↗</span></div>
+        <div class="case"><strong>Vertex2OpenAI</strong><p>API compatibility at the edge</p></div>
+        <div class="case"><strong>RAG delivery lab</strong><p>Retrieval meets release engineering</p></div>
+        <div class="case"><strong>R2FileBox</strong><p>Resumable storage and recovery</p></div>
+      </aside>
+    </div>
+    <footer><p class="byline"><strong>Akira</strong> AI Platform Engineer</p><span class="footer-url">workhmz.github.io/workHMZ</span></footer>
+  </main>
+</body>
+</html>
