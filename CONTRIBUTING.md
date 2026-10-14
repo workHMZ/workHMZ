@@ -12,6 +12,8 @@ Use concrete project behavior and public evidence. Keep professional project res
 
 Edit `scripts/generate-readme-visuals.py`, then regenerate the SVGs. Do not patch generated artwork by hand.
 
+Artwork uses bundled Space Grotesk and IBM Plex Mono glyph outlines for consistent typography across browsers. Normal generation remains dependency-free; font sources, licenses, and optional atlas rebuilding instructions are in `assets/fonts/README.md`.
+
 ```sh
 python3 scripts/generate-readme-visuals.py
 python3 scripts/verify.py
