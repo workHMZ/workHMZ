@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check the static portfolio without installing third-party packages."""
 from html.parser import HTMLParser
+import json
 from pathlib import Path
 import re
 import runpy
@@ -23,6 +24,10 @@ class Document(HTMLParser):
         super().__init__()
         self.ids = set()
         self.references = []
+        self.i18n_keys = set()
+        self.json_ld = []
+        self._in_json_ld = False
+        self._buf = []
         self.source = source
 
     def handle_starttag(self, tag, attributes):
@@ -37,6 +42,21 @@ class Document(HTMLParser):
         if attrs.get('srcset'):
             self.references.extend(item.strip().split()[0]
                                    for item in attrs['srcset'].split(',') if item.strip())
+        for name in ('data-i18n', 'data-i18n-html'):
+            if attrs.get(name):
+                self.i18n_keys.add(attrs[name])
+        if tag == 'script' and attrs.get('type') == 'application/ld+json':
+            self._in_json_ld = True
+            self._buf = []
+
+    def handle_data(self, data):
+        if self._in_json_ld:
+            self._buf.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == 'script' and self._in_json_ld:
+            self._in_json_ld = False
+            self.json_ld.append(''.join(self._buf))
 
 
 def read_document(path):
@@ -134,18 +154,60 @@ def run(command):
         fail(f'{" ".join(command)} failed:\n{result.stdout}{result.stderr}'.rstrip())
 
 
+def check_portfolio_data(index_doc):
+    for raw in index_doc.json_ld:
+        try:
+            payload = json.loads(raw)
+            if not isinstance(payload, dict) or '@context' not in payload or '@type' not in payload:
+                fail('index.html: JSON-LD must contain @context and @type')
+        except json.JSONDecodeError as error:
+            fail(f'index.html: invalid JSON-LD: {error}')
+    if not shutil.which('node'):
+        fail('node is required for this check')
+        return
+    probe = (
+        "const fs=require('fs'),vm=require('vm');"
+        "const ctx={window:{}};"
+        "vm.runInNewContext(fs.readFileSync('i18n.js','utf8'),ctx);"
+        "vm.runInNewContext(fs.readFileSync('calendar-data.js','utf8'),ctx);"
+        "const i=ctx.window.PORTFOLIO_I18N,c=ctx.window.CALENDAR;"
+        "console.log(JSON.stringify({jaText:Object.keys(i.ja.text),enUi:Object.keys(i.en.ui),"
+        "jaUi:Object.keys(i.ja.ui),enCal:Object.keys(i.en.calendar),jaCal:Object.keys(i.ja.calendar),"
+        "calYears:Object.keys(c.years)}));"
+    )
+    result = subprocess.run(['node', '-e', probe], cwd=ROOT, text=True, capture_output=True)
+    if result.returncode:
+        fail(f'portfolio data evaluation failed:\n{result.stdout}{result.stderr}'.rstrip())
+        return
+    data = json.loads(result.stdout)
+    ja_keys = set(data['jaText'])
+    missing = sorted(index_doc.i18n_keys - ja_keys)
+    unused = sorted(ja_keys - index_doc.i18n_keys)
+    if missing:
+        fail(f'i18n.js: missing Japanese translations for {missing}')
+    if unused:
+        fail(f'i18n.js: unused Japanese translation keys {unused}')
+    if set(data['enUi']) != set(data['jaUi']):
+        fail(f'i18n.js: en.ui and ja.ui keys differ: {sorted(set(data["enUi"]) ^ set(data["jaUi"]))}')
+    if set(data['enCal']) != set(data['jaCal']):
+        fail(f'i18n.js: en.calendar and ja.calendar keys differ')
+    if not set(data['enCal']).issubset(set(data['calYears'])):
+        fail('calendar-data.js: missing years referenced in i18n.js')
+
+
 def main():
     check_artwork()
     for name in ('README.md', 'index.html', 'og-card.html'):
         check_references(ROOT / name)
-    for name in ('script.js', 'i18n.js'):
+    check_portfolio_data(read_document(ROOT / 'index.html'))
+    for name in ('script.js', 'i18n.js', 'calendar-data.js'):
         run(['node', '--check', name])
     run(['git', 'diff', '--check'])
     run(['git', 'diff', '--cached', '--check'])
     if ERRORS:
         print('\n'.join(f'FAIL: {error}' for error in ERRORS), file=sys.stderr)
         return 1
-    print('Verified: SVG safety and generation, local references and anchors, JavaScript syntax, Git whitespace.')
+    print('Verified: SVG safety and generation, local references and anchors, i18n parity, JSON-LD, JavaScript syntax, Git whitespace.')
     return 0
 
 

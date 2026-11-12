@@ -3,7 +3,7 @@
 Keep the three surfaces distinct:
 
 - **README:** the entrance. A short introduction, selected work, and one clear link to each website.
-- **GitHub Pages:** the engineering portfolio. Project details, implementation decisions, professional experience, and where I can help. Its source is `index.html`, `style.css`, `script.js`, and `i18n.js`.
+- **GitHub Pages:** the engineering portfolio. Project details, implementation decisions, professional experience, and where I can help. Its source is `index.html`, `style.css`, `script.js`, `i18n.js`, and `calendar-data.js` (refreshed via `python3 scripts/snapshot-contributions.py`).
 - **Field Notes:** photography, everyday life, and the personal lab at [profile.mingzhe.uk](https://profile.mingzhe.uk/). This separate site is not maintained in this repository.
 
 Use concrete project behavior and public evidence. Keep professional project results separate from open-source project claims. Update English and Japanese copy together.
