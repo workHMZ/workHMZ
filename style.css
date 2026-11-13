@@ -875,7 +875,7 @@ a.svc-open:hover { color: var(--ink); transform: translate(2px, -2px); }
 
 /* ledger — spacious row breathing room */
 .ledger { padding: 4px var(--pad); gap: 0; }
-.rec { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap) 28px; padding-block: 32px; scroll-margin-top: 92px; }
+.rec { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap) 28px; padding-block: 32px; }
 .rec + .rec { border-top: 1px solid var(--line); }
 .rec-metric { grid-column: 1 / 4; display: grid; gap: 8px; align-content: start; }
 .rec-num { font-size: clamp(2.1rem, 3.2vw, 2.65rem); font-weight: 500; line-height: 1.06; letter-spacing: -.045em; font-variant-numeric: tabular-nums; }

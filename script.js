@@ -334,7 +334,8 @@
     };
     daybar.addEventListener('pointerdown', scrub);
     daybar.addEventListener('pointermove', scrub);
-    daybar.addEventListener('pointerleave', release);
+    /* A lifted finger also fires pointerleave; let the pointerup timer below handle touch. */
+    daybar.addEventListener('pointerleave', event => { if (event.pointerType !== 'touch') release(); });
     daybar.addEventListener('pointercancel', release);
     /* A finger has no "leave": hold the reading briefly after it lifts, then return to now. */
     daybar.addEventListener('pointerup', event => {
@@ -581,7 +582,9 @@
   /* ---------------------------------------------------------- selectable repository cards */
   $$('.card.project[data-href], .repo-tile[data-href]').forEach(card => {
     card.addEventListener('click', event => {
-      if (event.defaultPrevented || event.target.closest('a, button')) return;
+      /* Only the areas that show a pointer cursor navigate; on touch screens the links do. */
+      if (event.defaultPrevented || event.target.closest('a, button, .repo-bar, .project-body')) return;
+      if (matchMedia('(hover: none)').matches) return;
       if (String(window.getSelection?.() || '').trim().length > 0) return;
       window.open(card.dataset.href, '_blank', 'noopener,noreferrer');
     });
