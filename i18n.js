@@ -124,7 +124,7 @@ window.PORTFOLIO_I18N = {
       'projects.soloOss': '個人開発 OSS',
       'projects.source': 'ソースを見る',
       'projects.vertex.meta': '依存ゼロのエッジ実装',
-      'projects.rag.release': 'リリース一覧',
+      'projects.release': 'リリース一覧',
       'projects.liveApp': '公開稼働中 · box.mingzhe.uk',
 
       'projects.vertex.kicker': 'API 統合・ゲートウェイ',

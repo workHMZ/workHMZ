@@ -590,6 +590,31 @@
     });
   });
 
+  /* ---------------------------------------------------------- latest release tags
+   * The markup ships the last known tag; the public GitHub API (60 req/h per IP, CORS open)
+   * refreshes it, cached for an hour per tab. Any failure leaves the shipped tag in place.
+   */
+  const RELEASE_TTL = 3600000;
+  $$('[data-release]').forEach(async link => {
+    const repo = link.dataset.release;
+    const mark = $('.release-mark', link);
+    if (!mark) return;
+    const show = tag => { mark.textContent = /^\d/.test(tag) ? `v${tag}` : tag; };
+    const key = `release:${repo}`;
+    try {
+      const cached = JSON.parse(sessionStorage.getItem(key) || 'null');
+      if (cached && Date.now() - cached.at < RELEASE_TTL) { show(cached.tag); return; }
+    } catch (_) {}
+    try {
+      const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' }, credentials: 'omit' });
+      if (!res.ok) return;
+      const tag = (await res.json())?.tag_name;
+      if (typeof tag !== 'string' || !tag || tag.length > 32) return;
+      show(tag);
+      try { sessionStorage.setItem(key, JSON.stringify({ tag, at: Date.now() })); } catch (_) {}
+    } catch (_) {}
+  });
+
   /* ---------------------------------------------------------- figure: resumable upload */
   const grid = $('#chunk-grid');
   if (grid) {

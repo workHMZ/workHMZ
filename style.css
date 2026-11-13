@@ -785,7 +785,7 @@ a.svc-open:hover { color: var(--ink); transform: translate(2px, -2px); }
 .project-foot {
   margin-top: auto; padding-top: 14px;
   border-top: 1px dashed var(--line-2);
-  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  display: flex; align-items: center; justify-content: flex-start; gap: 10px 12px; flex-wrap: wrap;
 }
 .foot-meta { font: 400 11.5px/1.4 var(--mono); color: var(--ink-3); }
 .foot-live {
