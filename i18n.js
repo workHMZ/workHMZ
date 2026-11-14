@@ -124,8 +124,8 @@ window.PORTFOLIO_I18N = {
       'projects.soloOss': '個人開発 OSS',
       'projects.source': 'ソースを見る',
       'projects.vertex.meta': '依存ゼロのエッジ実装',
-      'projects.release': 'リリース一覧',
-      'projects.liveApp': '公開稼働中 · box.mingzhe.uk',
+      'projects.release': 'リリース',
+      'projects.liveApp': '公開中 · box.mingzhe.uk',
 
       'projects.vertex.kicker': 'API 統合・ゲートウェイ',
       'projects.vertex.summary': '使い慣れた API から、Vertex AI Gemini へ。',

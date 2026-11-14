@@ -189,7 +189,7 @@
     renderCalendarCaption();
     renderBoard();
     delete doc.dataset.i18nPending;
-    requestAnimationFrame(syncChrome);
+    syncChrome();
   }
 
   function setLang(next) {
