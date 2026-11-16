@@ -7,3 +7,6 @@
 
 # Avatar source renders and prompts stay local
 art/avatar/
+
+# Intro film sources, renders and review frames stay local
+artifacts/

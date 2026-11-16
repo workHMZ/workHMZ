@@ -6,6 +6,8 @@
 I build AI systems and useful tools, then keep improving them through real use.
 My work spans retrieval, delivery and operations. Away from the keyboard, I take photos and tinker with a home lab.
 
+https://github.com/user-attachments/assets/2c2ef78e-5b81-44ce-bb9d-d0cb9d91aa17
+
 <a href="https://workhmz.github.io/workHMZ/">
   <picture>
     <source media="(max-width: 640px)" srcset="assets/readme/entry-work-mobile.svg">
